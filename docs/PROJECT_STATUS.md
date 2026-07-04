@@ -66,13 +66,37 @@ Sprint 1
 * \[ ] Contact Section
 * \[ ] Footer
 
-## Current Task
+Sprint 1 Progress
 
-Build Navbar
+✅ React Setup
+✅ Tailwind CSS
+✅ Routing
+✅ MainLayout
+✅ TopBar
+✅ Navbar
+🟡 Hero (85% complete)
+✅ Highlights Section
+✅ Reusable UI Components
+    - Button
+    - Container
+    - SectionTitle
+✅ Vite @ Alias
 
-## Next Task
+Current Task:
+Build "What We Do" section.
 
-Hero Slider
+Next:
+1. Company Video
+2. Company Profile
+3. GRS Certificate
+4. Need More Information
+5. Footer
+
+Hero Polish (Later):
+- Custom pagination (01/02/03)
+- Better spacing
+- Final animations
+- Responsive fine tuning
 
 
 

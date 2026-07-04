@@ -23,3 +23,14 @@ Completed
 Next Session
 
 - Build Navbar
+
+Session 3
+
+Completed
+- Hero Section (base implementation)
+- Highlights Section
+- Reusable UI Components
+- Vite @ Alias configured
+
+Next Session
+- Build What We Do
