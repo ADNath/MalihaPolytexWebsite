@@ -1,0 +1,11 @@
+.container-custom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.section-padding {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
