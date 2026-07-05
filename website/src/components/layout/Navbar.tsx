@@ -67,10 +67,10 @@ export default function Navbar() {
                   key={item.name}
                   to={item.path}
                   className={({ isActive }) =>
-                    `relative py-2 font-medium transition-colors duration-300 ${
+                    `group relative py-2 font-medium transition-colors duration-300 ${
                       isActive
-                        ? "text-green-700"
-                        : "text-gray-700 hover:text-green-700"
+                        ? "text-primary"
+                        : "text-gray-700 hover:text-primary"
                     }`
                   }
                 >

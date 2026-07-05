@@ -2,8 +2,8 @@ import Hero from "./Components/Hero/Hero";
 import Highlights from "./Components/Highlights/Highlights";
 import WhatWeDo from "@/features/home/Sections/WhatWeDo";
 import CompanyVideo from "./Components/CompanyVideo";
-import CompanyProfile from "./Components/CompanyProfile";
-import Certificate from "./Sections/Certificate";
+import CompanyOverview from "./Sections/CompanyOverview";
+import ContactUs from "../contactUs";
 
 export default function Home() {
   return (
@@ -12,8 +12,8 @@ export default function Home() {
       <Highlights />
       <WhatWeDo />
       <CompanyVideo />
-      <CompanyProfile />
-      <Certificate />
+      <CompanyOverview />
+      <ContactUs />     
     </>
   );
 }

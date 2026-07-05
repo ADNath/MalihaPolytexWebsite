@@ -1,39 +1,40 @@
+// Hero.tsx
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
-import hero1 from "../../../../assets/slider/banner1.jpg";
-import hero2 from "../../../../assets/slider/banner2.jpg";
-import hero3 from "../../../../assets/slider/banner4.jpg";
-import Button from "../../../../components/ui/Button";
+import hero1 from "@/assets/slider/banner1.jpg";
+import hero2 from "@/assets/slider/banner2.jpg";
+import hero3 from "@/assets/slider/banner4.jpg";
+
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 
 const slides = [
   {
     image: hero2,
-    title: "Turning Waste Into High Quality Fiber",
     subtitle: "RECYCLING FOR SUSTAINABILITY",
+    title: "Turning Waste Into High Quality Fiber",
     description:
       "Bangladesh's First GRS Certified PSF Manufacturer committed to sustainable textiles and a better tomorrow.",
   },
   {
     image: hero1,
-    title: "Premium Recycled Polyester Fiber",
     subtitle: "SUSTAINABLE MANUFACTURING",
+    title: "Premium Recycled Polyester Fiber",
     description:
       "Producing eco-friendly recycled polyester staple fiber using world-class technology.",
   },
   {
     image: hero3,
-    title: "Building A Greener Future",
     subtitle: "GLOBAL QUALITY",
+    title: "Building A Greener Future",
     description:
       "Delivering premium recycled fiber to customers around the world.",
   },
@@ -41,103 +42,95 @@ const slides = [
 
 export default function Hero() {
   const swiperRef = useRef<SwiperType | null>(null);
-
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className="relative overflow-hidden">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
+        modules={[Autoplay, EffectFade]}
         effect="fade"
         loop
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
+        speed={900}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.title}>
             <div
-              className="relative min-h-[650px] h-[calc(100vh-120px)] bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-              }}
+              className="relative h-[600px] sm:h-[680px] lg:h-[calc(100vh-120px)] bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.image})` }}
             >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/15" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-transparent" />
 
-              {/* Content */}
-              <div className="relative z-10 mx-auto flex h-full max-w-7xl items-start px-6 pt-28 lg:px-8">
-                <div className="max-w-xl text-white">
+              <Container className="relative z-10 flex h-full flex-col justify-between py-16 lg:py-28">
+                <div className="max-w-md text-white lg:max-w-xl">
                   <p className="mb-5 text-sm font-semibold uppercase tracking-[0.3em] text-green-400">
                     {slide.subtitle}
                   </p>
 
-                  <h1 className="mb-6 text-5xl font-bold leading-tight lg:text-7xl">
+                  <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">
                     {slide.title}
                   </h1>
 
-                  <p className="mb-10 text-lg leading-8 text-gray-200">
+                  <p className="mt-6 text-base leading-7 text-gray-200 lg:text-lg lg:leading-8">
                     {slide.description}
                   </p>
 
-                  <div className="flex flex-col gap-4 sm:flex-row">
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                     <Button to="/products">Explore Products</Button>
 
                     <Button to="/contact" variant="outline">
                       Contact Us
                     </Button>
                   </div>
+                </div>
 
-                  {/* Custom Pagination */}
-                  <div className="mt-16 flex items-center gap-8">
+                <div className="pb-4 lg:pb-0">
+                  <div className="flex items-center gap-6">
                     {slides.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => swiperRef.current?.slideToLoop(index)}
-                        className="group flex items-center gap-3"
+                        className="flex items-center gap-3"
                       >
                         <span
-                          className={`text-sm font-semibold ${
+                          className={
                             activeIndex === index
-                              ? "text-white"
-                              : "text-gray-400"
-                          }`}
+                              ? "text-sm font-semibold text-white"
+                              : "text-sm font-semibold text-gray-400"
+                          }
                         >
                           {String(index + 1).padStart(2, "0")}
                         </span>
 
                         <span
-                          className={`h-[2px] transition-all duration-300 ${
+                          className={
                             activeIndex === index
-                              ? "w-16 bg-green-500"
-                              : "w-10 bg-gray-500"
-                          }`}
+                              ? "h-[2px] w-16 bg-green-500 transition-all"
+                              : "h-[2px] w-10 bg-gray-500 transition-all"
+                          }
                         />
                       </button>
                     ))}
                   </div>
                 </div>
-              </div>
+              </Container>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Previous */}
       <button
         onClick={() => swiperRef.current?.slidePrev()}
-        className="absolute left-6 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black"
+        className="absolute left-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black lg:flex"
       >
         <ChevronLeft size={22} />
       </button>
 
-      {/* Next */}
       <button
         onClick={() => swiperRef.current?.slideNext()}
-        className="absolute right-6 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black"
+        className="absolute right-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black lg:flex"
       >
         <ChevronRight size={22} />
       </button>

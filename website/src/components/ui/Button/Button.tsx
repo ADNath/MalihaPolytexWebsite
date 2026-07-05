@@ -10,6 +10,7 @@ interface ButtonProps {
   onClick?: () => void;
   variant?: ButtonVariant;
   className?: string;
+  icon?: ReactNode;
 }
 
 export default function Button({
@@ -18,6 +19,7 @@ export default function Button({
   onClick,
   variant = "primary",
   className,
+  icon
 }: ButtonProps) {
   const classes = clsx(
     "inline-flex items-center justify-center rounded-full px-8 py-4 font-semibold transition-all duration-300",
@@ -38,13 +40,15 @@ export default function Button({
     return (
       <Link to={to} className={classes}>
         {children}
+        {icon}
       </Link>
     );
   }
 
   return (
-    <button onClick={onClick} className={classes}>
+    <button type="button" onClick={onClick} className={classes}>
       {children}
+      {icon}
     </button>
   );
 }
