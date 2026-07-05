@@ -18,14 +18,14 @@ export const companyOverviewData = {
   title: "A Legacy Built on Trust & Sustainability",
 
   description:
-    "Maliha Poly Tex Fiber Industry Limited is a Bangladesh-China joint venture dedicated to manufacturing premium 100% recycled Polyester Staple Fiber (PSF). Through advanced technology and sustainable practices, we deliver environmentally responsible textile solutions for both local and international markets.",
+    "Maliha Poly Tex Fiber Industry Limited is producing eco-friendly 100% polyster fiber in (PSF) in Bangladesh.",
 
   buttonText: "Download Company Profile",
 
   features: [
     {
-      title: "Bangladesh-China Joint Venture",
-      description: "A strategic partnership combining international expertise and local excellence.",
+      title: "Eco-firendly",
+      description: "Eco-freiendly Polyester fiber(PSF).",
       icon: Globe2,
     },
     {

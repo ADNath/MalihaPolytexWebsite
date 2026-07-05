@@ -6,10 +6,7 @@ import logo from "../../assets/logo/logo.png";
 
 const navItems = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Products", path: "/products" },
-  { name: "Certificates", path: "/certificates" },
-  { name: "Contact", path: "/contact" },
+ 
 ];
 
 export default function Navbar() {
