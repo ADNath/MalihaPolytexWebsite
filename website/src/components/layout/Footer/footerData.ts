@@ -17,6 +17,6 @@ export const footerData = {
     address:
       "House #57, Gausul Azam Avenue, Sector #14, Uttara, Dhaka-1230",
     phone: "+880 1934 561780",
-    email: "info@malihapolytex.com",
+    email: "malihapolytex@malihabd.com",
   },
 };

@@ -10,23 +10,23 @@ export interface WhatWeDoItem {
 export const whatWeDoData: WhatWeDoItem[] = [
   {
     id: 1,
-    title: "Who We Are",
+    title: "About Us",
     description:
-      "Maliha Poly Tex Fiber Industry Limited is a Bangladesh–China joint venture producing eco-friendly 100% recycled Polyester Staple Fiber (PSF).",
+      "We are the pioneer of Polyester Staple Fiber manufacturer in Bangladesh. We are a well-tuned team of Technical engineing with a great Management system.",
     icon: Users,
   },
   {
     id: 2,
-    title: "What We Do",
+    title: "Our Product",
     description:
-      "We manufacture fine quality 100% recycled PSF using advanced technology. Our fibers are used in yarns, fabrics and garments worldwide.",
+      "We provide the largest selection of high-quality Polyester staple fiber (PSF) from the Recycle PET material.",
     icon: Cog,
   },
   {
     id: 3,
-    title: "Achievement",
+    title: "Our Achievements",
     description:
-      "We are the first Global Recycled Standard (GRS) certified PSF manufacturer in Bangladesh, setting new industry benchmarks.",
+      "We are the first Global Recycle Standard (GRS) certified PSF manufacturing company in Bangladesh.",
     icon: Trophy,
   },
 ];

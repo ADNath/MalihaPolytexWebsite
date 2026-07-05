@@ -3,57 +3,82 @@ import { contactData } from "./contactData";
 
 export default function ContactUs() {
   return (
-    <section className="py-14">
-      {/* Use xl instead of lg */}
+    <section className="bg-gray-50 py-20">
       <Container size="xl">
-        <h2 className="mb-10 text-center text-2xl font-bold uppercase tracking-[0.15em] text-primary">
-          Need More Information?
-        </h2>
+        <div className="mx-auto mb-14 max-w-2xl text-center">
+          <h2 className="text-3xl font-bold uppercase tracking-[0.15em] text-primary">
+            Need More Information?
+          </h2>
 
-        <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+          <p className="mt-4 text-gray-600">
+            Our team is always ready to assist you with your inquiries.
+          </p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-3">
           {contactData.map((item) => {
             const Icon = item.icon;
 
             return (
-              <a
+              <div
                 key={item.title}
-                href={item.href}
-                className="
-                  flex
-                  items-start
-                  gap-4
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  bg-white
-                  p-5
-                  shadow-sm
-                  transition-shadow
-                  hover:shadow-md
-                "
+                className="group rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 {/* Icon */}
-
-                <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Icon className="h-6 w-6 text-primary" />
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                  <Icon className="h-7 w-7 text-primary" />
                 </div>
 
-                {/* Text */}
+                {/* Title */}
+                <h3 className="mb-6 text-2xl font-semibold text-gray-900">
+                  {item.title}
+                </h3>
 
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-1 text-base font-medium text-gray-800">
-                    {item.value}
-                  </p>
-
-                  <p className="mt-1 text-sm leading-6 text-gray-500">
-                    {item.description}
-                  </p>
+                {/* Content */}
+                <div className="space-y-3">
+                  {item.lines.map((line) =>
+                    line.href ? (
+                      <a
+                        key={line.text}
+                        href={line.href}
+                        className="block text-lg font-medium text-gray-800 transition-colors hover:text-primary"
+                      >
+                        {line.text}
+                      </a>
+                    ) : (
+                      <p
+                        key={line.text}
+                        className="text-lg leading-8 text-gray-700"
+                      >
+                        {line.text}
+                      </p>
+                    )
+                  )}
                 </div>
-              </a>
+
+                {/* Footer */}
+                {item.actionLabel &&
+                  (item.href ? (
+                    <a
+                      href={item.href}
+                      target={
+                        item.href.startsWith("http") ? "_blank" : undefined
+                      }
+                      rel={
+                        item.href.startsWith("http")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      className="mt-8 inline-flex font-medium text-primary transition-colors hover:text-primary/80"
+                    >
+                      {item.actionLabel}
+                    </a>
+                  ) : (
+                    <p className="mt-8 text-sm text-gray-500">
+                      {item.actionLabel}
+                    </p>
+                  ))}
+              </div>
             );
           })}
         </div>

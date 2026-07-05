@@ -1,4 +1,4 @@
-import { CheckCircle } from "lucide-react";
+
 
 import Button from "@/components/ui/Button";
 import { companyVideoData } from "./companyVideoData";
@@ -11,15 +11,15 @@ export default function CompanyVideoContent() {
         {companyVideoData.subtitle}
       </span>
 
-      <h2 className="text-3xl font-bold leading-tight text-gray-900 lg:text-5xl">
+      <h5 className="text-2xl font-bold leading-tight text-gray-900 lg:text-4xl">
         {companyVideoData.title}
-      </h2>
+      </h5>
 
       <p className="mt-6 max-w-xl leading-8 text-gray-600">
         {companyVideoData.description}
       </p>
 
-      <ul className="mt-8 space-y-5">
+      {/* <ul className="mt-8 space-y-5">
         {companyVideoData.features.map((feature) => (
           <li key={feature} className="flex items-start gap-3">
             <CheckCircle
@@ -30,10 +30,10 @@ export default function CompanyVideoContent() {
             <span className="text-gray-700">{feature}</span>
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       <div className="mt-10">
-        <Button>Learn More</Button>
+        <Button>About Us</Button>
       </div>
     </div>
   );
