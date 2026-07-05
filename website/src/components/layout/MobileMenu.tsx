@@ -1,23 +1,15 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { navItems } from "./navigation";
+import MobileNavigationItem from "./MobileNavigationItem";
 import { X } from "lucide-react";
-
-type NavItem = {
-  name: string;
-  path: string;
-};
 
 interface MobileMenuProps {
   open: boolean;
   onClose: () => void;
-  navItems: NavItem[];
 }
 
-export default function MobileMenu({
-  open,
-  onClose,
-  navItems,
-}: MobileMenuProps) {
+export default function MobileMenu({ open, onClose }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return;
 
@@ -55,9 +47,7 @@ export default function MobileMenu({
         {/* Header */}
 
         <div className="flex items-center justify-between border-b border-gray-200 p-6">
-          <h2 className="text-2xl font-bold text-primary">
-            Menu
-          </h2>
+          <h2 className="text-2xl font-bold text-primary">Menu</h2>
 
           <button
             type="button"
@@ -73,20 +63,7 @@ export default function MobileMenu({
 
         <nav className="flex flex-1 flex-col gap-2 p-6">
           {navItems.map((item) => (
-            <NavLink
-              key={item.name}
-              to={item.path}
-              onClick={onClose}
-              className={({ isActive }) =>
-                `rounded-xl px-4 py-3 text-lg font-medium transition-colors duration-300 ${
-                  isActive
-                    ? "bg-primary text-white"
-                    : "text-gray-700 hover:bg-primary/10 hover:text-primary"
-                }`
-              }
-            >
-              {item.name}
-            </NavLink>
+            <MobileNavigationItem key={item.id} item={item} onClose={onClose} />
           ))}
         </nav>
 

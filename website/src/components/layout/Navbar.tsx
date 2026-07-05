@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 import logo from "../../assets/logo/logo.png";
+import DesktopNavigation from "./DesktopNavigation";
 
-const navItems = [
-  { name: "Home", path: "/" },
- 
-];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,33 +55,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Menu */}
-            <nav className="hidden lg:flex items-center gap-12">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.name}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `group relative py-2 font-medium transition-colors duration-300 ${
-                      isActive
-                        ? "text-primary"
-                        : "text-gray-700 hover:text-primary"
-                    }`
-                  }
-                >
-                  {({ isActive }) => (
-                    <>
-                      {item.name}
-
-                      <span
-                        className={`absolute left-0 -bottom-1 h-[2px] bg-green-700 transition-all duration-300 ${
-                          isActive ? "w-full" : "w-0 group-hover:w-full"
-                        }`}
-                      />
-                    </>
-                  )}
-                </NavLink>
-              ))}
-            </nav>
+            <DesktopNavigation />
 
             {/* Contact Button */}
             <div className="hidden lg:block">
@@ -104,11 +75,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      <MobileMenu
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        navItems={navItems}
-      />
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </>
   );
 }
