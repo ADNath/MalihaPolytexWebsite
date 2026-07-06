@@ -20,42 +20,42 @@ export const navItems: NavigationItem[] = [
         name: "Top Management",
         path: "/about-us/top-management",
       },
-      {
-        id: "company-profile",
-        name: "Company Profile",
-        path: "/about-us/company-profile",
-      },
-      {
-        id: "career",
-        name: "Career",
-        children: [
-          {
-            id: "current-opening",
-            name: "Current Opening",
-            path: "/career/current-opening",
-          },
-          {
-            id: "walk-in",
-            name: "Walk In Application",
-            path: "/career/walk-in-application",
-          },
-        ],
-      },
+      // {
+      //   id: "company-profile",
+      //   name: "Company Profile",
+      //   path: "/about-us/company-profile",
+      // },
+      // {
+      //   id: "career",
+      //   name: "Career",
+      //   children: [
+      //     {
+      //       id: "current-opening",
+      //       name: "Current Opening",
+      //       path: "/career/current-opening",
+      //     },
+      //     {
+      //       id: "walk-in",
+      //       name: "Walk In Application",
+      //       path: "/career/walk-in-application",
+      //     },
+      //   ],
+      // },
     ],
   },
-  {
-    id: "products",
-    name: "Products",
-    path: "/products",
-  },
-  {
-    id: "certificates",
-    name: "Certificates",
-    path: "/certificates",
-  },
-  {
-    id: "contact",
-    name: "Contact",
-    path: "/contact",
-  },
+  // {
+  //   id: "products",
+  //   name: "Products",
+  //   path: "/products",
+  // },
+  // {
+  //   id: "certificates",
+  //   name: "Certificates",
+  //   path: "/certificates",
+  // },
+  // {
+  //   id: "contact",
+  //   name: "Contact",
+  //   path: "/contact",
+  // },
 ];

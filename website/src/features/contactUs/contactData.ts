@@ -18,20 +18,24 @@ export const contactData: ContactItem[] = [
     actionLabel: "Sat – Thu (9:30 AM – 6:30 PM)",
     lines: [
       {
-        text: "+88 02-55093715",
+        text: "Tel: +88 02-55093715",
         href: "tel:+880255093715",
       },
       {
-        text: "+88 02-55093716",
+        text: "Tel: +88 02-55093716",
         href: "tel:+880255093716",
       },
       {
-        text: "+88 01713372017",
-        href: "tel:+8801713372017",
+        text: "Cell: +88 01713372015",
+        href: "tel:+8801713372015",
       },
       {
-        text: "+88 01713372015",
-        href: "tel:+8801713372015",
+        text: "Cell: +88 01772146403",
+        href: "tel:+8801772146403",
+      },
+      {
+        text: "Cell: +88 01744228205",
+        href: "tel:+8801744228205",
       },
     ],
   },
