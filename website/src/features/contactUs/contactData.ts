@@ -13,7 +13,7 @@ export interface ContactItem {
 
 export const contactData: ContactItem[] = [
   {
-    title: "Call Us",
+    title: "Contact Sales & Support",
     icon: Phone,
     actionLabel: "Sat – Thu (9:30 AM – 6:30 PM)",
     lines: [
@@ -40,7 +40,7 @@ export const contactData: ContactItem[] = [
     ],
   },
   {
-    title: "Email Us",
+    title: "Business Inquiries",
     icon: Mail,
     actionLabel: "We'll respond as soon as possible",
     lines: [
@@ -51,7 +51,7 @@ export const contactData: ContactItem[] = [
     ],
   },
   {
-    title: "Visit Us",
+    title: "Corporate Office",
     icon: MapPin,
     actionLabel: "View on Google Maps →",
     href: "https://maps.google.com/...",
