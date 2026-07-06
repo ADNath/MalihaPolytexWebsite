@@ -20,11 +20,11 @@ export const navItems: NavigationItem[] = [
         name: "Top Management",
         path: "/about-us/top-management",
       },
-      // {
-      //   id: "company-profile",
-      //   name: "Company Profile",
-      //   path: "/about-us/company-profile",
-      // },
+      {
+        id: "company-profile",
+        name: "Company Profile",
+        path: "/about-us/company-profile",
+      },
       // {
       //   id: "career",
       //   name: "Career",
