@@ -17,9 +17,9 @@ export default function GetInTouchSection() {
           </h2>
 
           <p className="mt-5 leading-8 text-gray-600">
-            Have a business inquiry  or product
-            question? Fill out the contact form below or visit our corporate
-            office. We'd love to hear from you.
+            Have a business inquiry or product question? Fill out the contact
+            form below or visit our corporate office. We'd love to hear from
+            you.
           </p>
         </div>
 
@@ -32,10 +32,11 @@ export default function GetInTouchSection() {
             <div className="overflow-hidden rounded-3xl shadow-lg">
               <iframe
                 title="Corporate Office"
-                src="https://www.google.com/maps?q=House+12,+Road+14,+Sector+13,+Uttara,+Dhaka&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1824.2869278302653!2d90.3871646556515!3d23.86926152920386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c41a7accf0e1%3A0x947d1c890d457aa6!2sMALIHA%20POLYT%20TEX%20FIBER%20INDUSTRY%20LIMITED!5e0!3m2!1sen!2sbd!4v1783421225935!5m2!1sen!2sbd"
                 className="h-[620px] w-full border-0"
                 loading="lazy"
               />
+              
             </div>
           </div>
 

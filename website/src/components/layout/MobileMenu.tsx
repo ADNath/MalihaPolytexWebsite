@@ -61,10 +61,16 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 
         {/* Navigation */}
 
-        <nav className="flex flex-1 flex-col gap-2 p-6">
-          {navItems.map((item) => (
-            <MobileNavigationItem key={item.id} item={item} onClose={onClose} />
-          ))}
+        <nav className="min-h-0 flex-1 overflow-y-auto p-6">
+          <div className="space-y-2">
+            {navItems.map((item) => (
+              <MobileNavigationItem
+                key={item.id}
+                item={item}
+                onClose={onClose}
+              />
+            ))}
+          </div>
         </nav>
 
         {/* Bottom Button */}

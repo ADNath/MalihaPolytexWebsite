@@ -29,7 +29,7 @@ export default function ManagementCard({
           <div className="p-6">
             <div className="mb-5 h-px w-full bg-gray-200" />
 
-            <h3 className="text-2xl font-bold leading-tight text-gray-900">
+            <h3 className="text-base font-bold leading-tight text-gray-900">
               {member.name}
             </h3>
 

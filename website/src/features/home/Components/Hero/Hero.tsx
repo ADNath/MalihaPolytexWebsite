@@ -73,7 +73,7 @@ export default function Hero() {
                     {slide.title}
                   </h1>
 
-                  <p className="mt-6 text-base leading-7 text-gray-200 lg:text-lg lg:leading-8">
+                  <p className="mt-6 text-base leading-7 text-white-200 lg:text-lg lg:leading-8">
                     {slide.description}
                   </p>
 

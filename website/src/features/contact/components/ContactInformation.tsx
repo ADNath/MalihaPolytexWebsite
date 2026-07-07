@@ -109,7 +109,7 @@ export default function ContactInformation() {
               <div className="mb-8 border-b border-gray-100 pb-6">
                 <h4 className="mb-3 font-semibold text-gray-900">Telephone</h4>
 
-                <div className="grid grid-cols-1 gap-2 text-[15px] text-gray-600 sm:grid-cols-2 sm:gap-3">
+                <div className="grid grid-cols-1 gap-2 text-[15px] text-gray-600 sm:grid-cols-3 sm:gap-3">
                   {contactDetails.telephones.map((phone) => (
                     <p key={phone}>{phone}</p>
                   ))}
@@ -121,7 +121,7 @@ export default function ContactInformation() {
               <div className="mb-8 border-b border-gray-100 pb-6">
                 <h4 className="mb-3 font-semibold text-gray-900">Mobile</h4>
 
-                <div className="grid grid-cols-1 gap-2 text-[15px] text-gray-600 sm:grid-cols-2 sm:gap-3">
+                <div className="grid grid-cols-1 gap-2 text-[15px] text-gray-600 sm:grid-cols-3 sm:gap-3">
                   {contactDetails.mobiles.map((phone) => (
                     <p key={phone}>{phone}</p>
                   ))}
