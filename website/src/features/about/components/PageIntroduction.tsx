@@ -12,7 +12,7 @@ export default function PageIntroduction({
   description,
 }: PageIntroductionProps) {
   return (
-    <section className="py-16 lg:py-20">
+    <section className="py-5 lg:py-8">
       <Container size="lg">
         <div className="mx-auto max-w-4xl text-center">
           {eyebrow && (

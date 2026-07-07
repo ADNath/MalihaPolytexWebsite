@@ -25,22 +25,22 @@ export const navItems: NavigationItem[] = [
         name: "Company Profile",
         path: "/about-us/company-profile",
       },
-      // {
-      //   id: "career",
-      //   name: "Career",
-      //   children: [
-      //     {
-      //       id: "current-opening",
-      //       name: "Current Opening",
-      //       path: "/career/current-opening",
-      //     },
-      //     {
-      //       id: "walk-in",
-      //       name: "Walk In Application",
-      //       path: "/career/walk-in-application",
-      //     },
-      //   ],
-      // },
+      {
+        id: "career",
+        name: "Career",
+        children: [
+          {
+            id: "current-opening",
+            name: "Current Opening",
+            path: "/career/current-opening",
+          },
+          {
+            id: "walk-in",
+            name: "Walk In Application",
+            path: "/career/walk-in-application",
+          },
+        ],
+      },
     ],
   },
   // {
@@ -53,9 +53,9 @@ export const navItems: NavigationItem[] = [
   //   name: "Certificates",
   //   path: "/certificates",
   // },
-  // {
-  //   id: "contact",
-  //   name: "Contact",
-  //   path: "/contact",
-  // },
+  {
+    id: "contact",
+    name: "Contact",
+    path: "/contact",
+  },
 ];
