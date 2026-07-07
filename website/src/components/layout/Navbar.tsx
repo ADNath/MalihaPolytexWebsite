@@ -45,7 +45,7 @@ export default function Navbar() {
 
               <div className="hidden lg:block">
                 <h1 className="text-xl font-bold text-gray-900">
-                  Maliha Poly Tex <span  className="text-15px text-green-700 tracking-wide">Fiber Industry Ltd.</span>
+                  Maliha Poly Tex Fiber Industry Ltd.
                 </h1>
                   
               </div>

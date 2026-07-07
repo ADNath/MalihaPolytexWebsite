@@ -9,7 +9,7 @@ export interface ManagementMember {
 export const topManagement: ManagementMember[] = [
   {
     id: 1,
-    name: "MANZURUL HASSAN",
+    name: "MD. MANZURUL HASSAN MASUD",
     designation: "Chairman",
     image: "/images/management/chairman.png",
     message:
