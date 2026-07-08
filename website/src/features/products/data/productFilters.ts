@@ -1,6 +1,12 @@
 import type { ProductCategory } from "../types/product";
 
+
 export const productCategories: ProductCategory[] = [
+  {
+    id: "all",
+    name: "All",
+    filters: [],
+  },
   {
     id: "psf",
     name: "PSF",
@@ -48,14 +54,7 @@ export const productCategories: ProductCategory[] = [
       {
         key: "color",
         label: "Color",
-        options: [
-          "Milk White",
-          "White",
-          "Green",
-          "Deep Green",
-          "Mix",
-          "Black",
-        ],
+        options: ["Milk White", "White", "Green", "Deep Green", "Mix", "Black"],
       },
     ],
   },

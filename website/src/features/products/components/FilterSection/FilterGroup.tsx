@@ -14,12 +14,12 @@ export default function FilterGroup({
   onChange,
 }: Props) {
   return (
-    <div className="space-y-3">
-      <h4 className="font-semibold text-gray-900">
+    <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+      <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-700">
         {label}
       </h4>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
         <FilterChip
           label="All"
           active={value === null}

@@ -3,16 +3,20 @@ import { useMemo, useState } from "react";
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/common/PageHero";
 
-import ProductCategoryTabs from "../components/FilterSection/ProductCategoryTabs";
-import ProductFilters from "../components/FilterSection/ProductFilters";
+import FilterSection from "../components/FilterSection/FilterSection";
+import ActiveFilters from "../components/FilterSection/ActiveFilters";
+
+import MobileFilterBar from "../components/Mobile/MobileFilterBar";
+
+import ProductList from "../components/ProductList/ProductList";
 
 import { productCategories } from "../data/productFilters";
 import { demoProducts } from "../data/demoProducts";
 import { filterProducts } from "../utils/filterProducts";
-import ProductList from "../components/ProductList/ProductList";
 
 export default function ProductsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("psf");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
   const [selectedFilters, setSelectedFilters] = useState<
     Record<string, string | null>
   >({});
@@ -22,10 +26,16 @@ export default function ProductsPage() {
       (category) => category.id === selectedCategory
     ) ?? productCategories[0];
 
+  const filteredProducts = useMemo(() => {
+    return filterProducts(
+      demoProducts,
+      selectedCategory,
+      selectedFilters
+    );
+  }, [selectedCategory, selectedFilters]);
+
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategory(categoryId);
-
-    // Reset filters
     setSelectedFilters({});
   };
 
@@ -39,13 +49,21 @@ export default function ProductsPage() {
     }));
   };
 
-  const filteredProducts = useMemo(() => {
-    return filterProducts(
-      demoProducts,
-      selectedCategory,
-      selectedFilters
-    );
-  }, [selectedCategory, selectedFilters]);
+  const handleRemoveFilter = (key: string) => {
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [key]: null,
+    }));
+  };
+
+  const handleResetCategory = () => {
+    setSelectedCategory("all");
+    setSelectedFilters({});
+  };
+
+  const hasActiveFilters =
+    selectedCategory !== "all" ||
+    Object.values(selectedFilters).some((v) => v !== null);
 
   return (
     <>
@@ -62,24 +80,42 @@ export default function ProductsPage() {
         ]}
       />
 
-      <section className="py-16">
+      <section className="py-5 lg:py-5">
         <Container size="xl">
-          <div className="space-y-12">
-            {/* Category */}
-            <ProductCategoryTabs
-              categories={productCategories}
-              selectedCategory={selectedCategory}
-              onCategoryChange={handleCategoryChange}
-            />
+          <div className="space-y-8">
+            {/* Mobile */}
+            <div className="lg:hidden">
+              <MobileFilterBar
+                categories={productCategories}
+                currentCategory={currentCategory}
+                selectedCategory={selectedCategory}
+                selectedFilters={selectedFilters}
+                onCategoryChange={handleCategoryChange}
+                onFilterChange={handleFilterChange}
+              />
+            </div>
 
-            {/* Dynamic Filters */}
-            <ProductFilters
-              category={currentCategory}
-              selectedFilters={selectedFilters}
-              onFilterChange={handleFilterChange}
-            />
+            {/* Desktop */}
+            <div className="hidden lg:block">
+              <FilterSection
+                categories={productCategories}
+                currentCategory={currentCategory}
+                selectedCategory={selectedCategory}
+                selectedFilters={selectedFilters}
+                onCategoryChange={handleCategoryChange}
+                onFilterChange={handleFilterChange}
+              />
+            </div>
 
-            {/* Products */}
+            {hasActiveFilters && (
+              <ActiveFilters
+                selectedCategory={selectedCategory}
+                selectedFilters={selectedFilters}
+                onCategoryReset={handleResetCategory}
+                onRemoveFilter={handleRemoveFilter}
+              />
+            )}
+
             <ProductList products={filteredProducts} />
           </div>
         </Container>

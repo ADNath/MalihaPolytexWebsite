@@ -43,11 +43,11 @@ export const navItems: NavigationItem[] = [
       },
     ],
   },
-  // {
-  //   id: "products",
-  //   name: "Products",
-  //   path: "/product",
-  // },
+  {
+    id: "products",
+    name: "Products",
+    path: "/product",
+  },
   // {
   //   id: "certificates",
   //   name: "Certificates",

@@ -42,7 +42,7 @@ export default function PageHero({
       </div>
 
       <Container size="xl">
-        <div className="relative flex min-h-[220px] flex-col justify-center py-14">
+        <div className="relative flex min-h-[220px] flex-col justify-center py-10">
           {/* Breadcrumb */}
 
           <nav className="mb-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">

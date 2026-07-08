@@ -12,21 +12,21 @@ export default function ProductFilters({
   selectedFilters,
   onFilterChange,
 }: Props) {
-  if (category.filters.length === 0) return null;
+  if (category.filters.length === 0) {
+    return null;
+  }
 
   return (
-    <section className="mt-8 space-y-6">
+    <div className="grid gap-6 lg:grid-cols-2">
       {category.filters.map((filter) => (
         <FilterGroup
           key={filter.key}
           label={filter.label}
           options={filter.options}
           value={selectedFilters[filter.key] ?? null}
-          onChange={(value) =>
-            onFilterChange(filter.key, value)
-          }
+          onChange={(value) => onFilterChange(filter.key, value)}
         />
       ))}
-    </section>
+    </div>
   );
 }
