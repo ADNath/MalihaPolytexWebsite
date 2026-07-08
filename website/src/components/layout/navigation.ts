@@ -46,7 +46,7 @@ export const navItems: NavigationItem[] = [
   // {
   //   id: "products",
   //   name: "Products",
-  //   path: "/products",
+  //   path: "/product",
   // },
   // {
   //   id: "certificates",

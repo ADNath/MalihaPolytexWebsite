@@ -7,6 +7,7 @@ import CurrentOpeningPage from "@/features/career/pages/CurrentOpeningPage";
 import JobDetailsPage from "@/features/career/pages/JobDetailsPage";
 import WalkInApplicationPage from "@/features/career/pages/WalkInApplicationPage";
 import ContactPage from "@/features/contact/pages/ContactPage";
+import ProductsPage from "@/features/products/pages/ProductsPage";
 
 export default function AppRoutes() {
   return (
@@ -34,6 +35,10 @@ export default function AppRoutes() {
           <Route
             path="/contact"
             element={<ContactPage />}
+          />
+          <Route
+            path="/product"
+            element={<ProductsPage />}
           />
         </Route>
       </Routes>

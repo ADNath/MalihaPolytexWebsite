@@ -5,7 +5,6 @@ import MobileMenu from "./MobileMenu";
 import logo from "../../assets/logo/logo.png";
 import DesktopNavigation from "./DesktopNavigation";
 
-
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -43,11 +42,10 @@ export default function Navbar() {
                 }`}
               />
 
-              <div className="hidden lg:block">
-                <h1 className="text-xl font-bold text-gray-900">
+              <div>
+                <h1 className="text-sm font-bold text-gray-900 sm:text-base md:text-lg lg:text-xl">
                   Maliha Poly Tex Fiber Industry Ltd.
                 </h1>
-                  
               </div>
             </Link>
 
