@@ -4,12 +4,14 @@ import Container from "@/components/ui/Container";
 import CareerApplicationForm from "../components/CareerApplicationForm";
 import JobSummary from "../components/JobSummary";
 import { jobs } from "../data/jobs";
+import usePageTitle from "@/hooks/usePageTitle";
 
 export default function JobDetailsPage() {
   // Temporary
   // Later this will come from useParams()
 
   const job = jobs[0];
+  usePageTitle("Job Details | Maliha Poly Tex Fiber Industry Ltd.");
 
   return (
     <>
@@ -59,15 +61,10 @@ export default function JobDetailsPage() {
 
                 <ul className="mt-6 space-y-4">
                   {job.responsibilities.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3"
-                    >
+                    <li key={item} className="flex items-start gap-3">
                       <span className="mt-2 h-2 w-2 rounded-full bg-primary" />
 
-                      <span className="leading-7 text-gray-600">
-                        {item}
-                      </span>
+                      <span className="leading-7 text-gray-600">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -84,15 +81,10 @@ export default function JobDetailsPage() {
 
                 <ul className="mt-6 space-y-4">
                   {job.requirements.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3"
-                    >
+                    <li key={item} className="flex items-start gap-3">
                       <span className="mt-2 h-2 w-2 rounded-full bg-primary" />
 
-                      <span className="leading-7 text-gray-600">
-                        {item}
-                      </span>
+                      <span className="leading-7 text-gray-600">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -102,9 +94,7 @@ export default function JobDetailsPage() {
 
               <section>
                 <div className="border-l-4 border-primary pl-5">
-                  <h2 className="text-2xl font-bold text-gray-900">
-                    Benefits
-                  </h2>
+                  <h2 className="text-2xl font-bold text-gray-900">Benefits</h2>
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
@@ -130,7 +120,6 @@ export default function JobDetailsPage() {
           </div>
         </Container>
       </section>
-
     </>
   );
 }

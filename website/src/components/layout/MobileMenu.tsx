@@ -14,6 +14,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
     if (!open) return;
 
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflowX = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -25,6 +26,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflowX = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [open, onClose]);
@@ -40,7 +42,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
     >
       <aside
         onClick={(e) => e.stopPropagation()}
-        className={`absolute right-0 top-0 flex h-full w-80 flex-col bg-white shadow-2xl transition-transform duration-300 ${
+        className={`fixed top-0 right-0 flex h-dvh w-80 max-w-[85vw] flex-col bg-white shadow-2xl transition-transform duration-300 will-change-transform ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >

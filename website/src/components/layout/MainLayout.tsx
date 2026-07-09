@@ -4,16 +4,16 @@ import Navbar from "./Navbar";
 import Footer from "./Footer/Footer";
 
 export default function MainLayout() {
-    return (
-        <>
-            <TopBar />
-            <Navbar />
+  return (
+    <div className="min-h-screen overflow-x-hidden">
+      <TopBar />
+      <Navbar />
 
-            <main>
-                <Outlet />
-            </main>
+      <main>
+        <Outlet />
+      </main>
 
-            <Footer />
-        </>
-    );
+      <Footer />
+    </div>
+  );
 }

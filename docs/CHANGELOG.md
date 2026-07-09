@@ -1,22 +1,15 @@
 # Changelog
 
-## 2026-07-04
+## v1.0.0
 
-### Added
-- React project
-- TypeScript
-- Tailwind CSS
-- React Router
-- Git Repository
-- GitHub Repository
-- Main Layout
-- Top Bar
+- Initial Website
+- Product Module
+- Gallery
+- Certificate
+- Career
 
-### Project Decisions
-- Website first
-- Backend second
-- Admin third
+---
 
-Documentation system added.
+## v1.1.0
 
-Project tracking established.
+- Admin Panel Started

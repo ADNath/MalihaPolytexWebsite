@@ -1,8 +1,9 @@
-
 import PageHero from "@/components/common/PageHero";
 import CompanyProfileSection from "../components/CompanyProfileSection";
+import usePageTitle from "@/hooks/usePageTitle";
 
 export default function CompanyProfilePage() {
+  usePageTitle("Company Profile | Maliha Poly Tex Fiber Industry Ltd.");
   return (
     <>
       <PageHero
@@ -13,7 +14,6 @@ export default function CompanyProfilePage() {
           { label: "Company Profile" },
         ]}
       />
-
 
       <CompanyProfileSection />
     </>

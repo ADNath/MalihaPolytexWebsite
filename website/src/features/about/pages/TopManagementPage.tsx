@@ -4,8 +4,10 @@ import PageHero from "@/components/common/PageHero";
 import PageIntroduction from "../components/PageIntroduction";
 import ManagementCard from "../components/ManagementCard";
 import { topManagement } from "../data/topManagement";
+import usePageTitle from "@/hooks/usePageTitle";
 
 export default function TopManagementPage() {
+  usePageTitle("Top Management | Maliha Poly Tex Fiber Industry Ltd.");
   return (
     <>
       <PageHero

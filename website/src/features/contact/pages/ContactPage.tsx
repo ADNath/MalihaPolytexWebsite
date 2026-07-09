@@ -3,16 +3,15 @@ import PageIntroduction from "@/features/about/components/PageIntroduction";
 
 import GetInTouchSection from "../components/GetInTouchSection";
 import ContactInformation from "../components/ContactInformation";
+import usePageTitle from "@/hooks/usePageTitle";
 
 export default function ContactPage() {
+  usePageTitle("Contact | Maliha Poly Tex Fiber Industry Ltd.");
   return (
     <>
       <PageHero
         title="Contact Us"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Contact Us" },
-        ]}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
       />
 
       <PageIntroduction

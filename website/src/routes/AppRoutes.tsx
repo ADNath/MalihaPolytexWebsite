@@ -8,6 +8,8 @@ import JobDetailsPage from "@/features/career/pages/JobDetailsPage";
 import WalkInApplicationPage from "@/features/career/pages/WalkInApplicationPage";
 import ContactPage from "@/features/contact/pages/ContactPage";
 import ProductsPage from "@/features/products/pages/ProductsPage";
+import GalleryPage from "@/features/gallery/pages/GalleryPage";
+import CertificatesPage from "@/features/certificates/pages/CertificatesPage";
 
 export default function AppRoutes() {
   return (
@@ -32,14 +34,10 @@ export default function AppRoutes() {
             path="/career/walk-in-application"
             element={<WalkInApplicationPage />}
           />
-          <Route
-            path="/contact"
-            element={<ContactPage />}
-          />
-          <Route
-            path="/product"
-            element={<ProductsPage />}
-          />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/product" element={<ProductsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/certificates" element={<CertificatesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

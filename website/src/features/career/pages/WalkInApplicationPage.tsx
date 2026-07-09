@@ -3,8 +3,10 @@ import Container from "@/components/ui/Container";
 import PageIntroduction from "@/features/about/components/PageIntroduction";
 
 import WalkInApplicationForm from "../components/WalkInApplicationForm";
+import usePageTitle from "@/hooks/usePageTitle";
 
 export default function WalkInApplicationPage() {
+  usePageTitle("Walk In Application | Maliha Poly Tex Fiber Industry Ltd.");
   return (
     <>
       <PageHero

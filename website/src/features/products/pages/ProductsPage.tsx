@@ -13,6 +13,7 @@ import ProductList from "../components/ProductList/ProductList";
 import { productCategories } from "../data/productFilters";
 import { demoProducts } from "../data/demoProducts";
 import { filterProducts } from "../utils/filterProducts";
+import usePageTitle from "@/hooks/usePageTitle";
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -22,16 +23,11 @@ export default function ProductsPage() {
   >({});
 
   const currentCategory =
-    productCategories.find(
-      (category) => category.id === selectedCategory
-    ) ?? productCategories[0];
+    productCategories.find((category) => category.id === selectedCategory) ??
+    productCategories[0];
 
   const filteredProducts = useMemo(() => {
-    return filterProducts(
-      demoProducts,
-      selectedCategory,
-      selectedFilters
-    );
+    return filterProducts(demoProducts, selectedCategory, selectedFilters);
   }, [selectedCategory, selectedFilters]);
 
   const handleCategoryChange = (categoryId: string) => {
@@ -39,10 +35,7 @@ export default function ProductsPage() {
     setSelectedFilters({});
   };
 
-  const handleFilterChange = (
-    key: string,
-    value: string | null
-  ) => {
+  const handleFilterChange = (key: string, value: string | null) => {
     setSelectedFilters((prev) => ({
       ...prev,
       [key]: value,
@@ -64,6 +57,7 @@ export default function ProductsPage() {
   const hasActiveFilters =
     selectedCategory !== "all" ||
     Object.values(selectedFilters).some((v) => v !== null);
+  usePageTitle("Products | Maliha Poly Tex Fiber Industry Ltd.");
 
   return (
     <>

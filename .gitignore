@@ -21,3 +21,6 @@ Thumbs.db
 
 # build
 coverage/
+
+#md file
+.md

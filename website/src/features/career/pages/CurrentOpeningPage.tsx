@@ -6,10 +6,12 @@ import NoOpenings from "../components/NoOpenings";
 import { jobs } from "../data/jobs";
 
 import Container from "@/components/ui/Container";
+import usePageTitle from "@/hooks/usePageTitle";
 
 export default function CurrentOpeningPage() {
   const activeJobs = jobs.filter((job) => job.isActive);
 
+  usePageTitle("Current Opening | Maliha Poly Tex Fiber Industry Ltd.");
   return (
     <>
       <PageHero

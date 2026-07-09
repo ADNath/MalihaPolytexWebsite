@@ -8,12 +8,12 @@ export default function TopBar() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone size={15} />
-            <span>+88-02-48957746</span>
+            <span>+88-02-55093715</span>
           </div>
 
           <div className="flex items-center gap-2">
             <Mail size={15} />
-            <span>info@malihapolytex.com</span>
+            <span>malihapolytex@malihabd.com</span>
           </div>
         </div>
 
