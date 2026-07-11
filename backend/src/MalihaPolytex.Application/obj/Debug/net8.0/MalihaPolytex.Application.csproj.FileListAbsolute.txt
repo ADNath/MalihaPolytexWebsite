@@ -1,0 +1,16 @@
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.csproj.AssemblyReference.cache
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.GeneratedMSBuildEditorConfig.editorconfig
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.AssemblyInfoInputs.cache
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.AssemblyInfo.cs
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.csproj.CoreCompileInputs.cache
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.sourcelink.json
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\bin\Debug\net8.0\MalihaPolytex.Application.deps.json
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\bin\Debug\net8.0\MalihaPolytex.Application.dll
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\bin\Debug\net8.0\MalihaPolytex.Application.pdb
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\bin\Debug\net8.0\MalihaPolytex.Domain.dll
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\bin\Debug\net8.0\MalihaPolytex.Domain.pdb
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.dll
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\refint\MalihaPolytex.Application.dll
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.pdb
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\ref\MalihaPolytex.Application.dll
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Application\obj\Debug\net8.0\MalihaPolytex.Application.csproj.CopyComplete

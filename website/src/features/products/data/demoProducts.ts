@@ -22,7 +22,7 @@ export const demoProducts: Product[] = [
   {
     id: 3,
     category: "psf",
-    name: "PSF 1.2D 38MM White",
+    name: "PSF 3D 38MM White",
     image: "/images/products/whitepsf.jpg",
     denier: "3D",
     cuttingLength: "38MM",

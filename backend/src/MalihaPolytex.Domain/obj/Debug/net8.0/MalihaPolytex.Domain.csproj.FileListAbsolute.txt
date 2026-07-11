@@ -1,0 +1,12 @@
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\bin\Debug\net8.0\MalihaPolytex.Domain.deps.json
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\bin\Debug\net8.0\MalihaPolytex.Domain.dll
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\bin\Debug\net8.0\MalihaPolytex.Domain.pdb
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\MalihaPolytex.Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\MalihaPolytex.Domain.AssemblyInfoInputs.cache
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\MalihaPolytex.Domain.AssemblyInfo.cs
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\MalihaPolytex.Domain.csproj.CoreCompileInputs.cache
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\MalihaPolytex.Domain.sourcelink.json
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\MalihaPolytex.Domain.dll
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\refint\MalihaPolytex.Domain.dll
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\MalihaPolytex.Domain.pdb
+F:\Project\MalihaPolytexWebsite\backend\src\MalihaPolytex.Domain\obj\Debug\net8.0\ref\MalihaPolytex.Domain.dll

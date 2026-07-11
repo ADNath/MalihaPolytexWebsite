@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "mG4cXQidkAodjxdY/VjrDelmAQZpIf63LQ/Z5BNZGN5xPzyHEBxG+jkmfpJqma3jHVC2HIlBfwXnleG8YdIjcA==",
+  "success": true,
+  "projectFilePath": "F:\\Project\\MalihaPolytexWebsite\\backend\\src\\MalihaPolytex.Application\\MalihaPolytex.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

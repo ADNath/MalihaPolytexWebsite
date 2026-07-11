@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "zdujU0jntr0C2IMheCmpL0/6O+BItYG5q3KuVBvu4Ps=",
+  "Source": "MalihaPolytex.API",
+  "BasePath": "_content/MalihaPolytex.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "MalihaPolytex.API\\wwwroot",
+      "Source": "MalihaPolytex.API",
+      "ContentRoot": "F:\\Project\\MalihaPolytexWebsite\\backend\\src\\MalihaPolytex.API\\wwwroot\\",
+      "BasePath": "_content/MalihaPolytex.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
