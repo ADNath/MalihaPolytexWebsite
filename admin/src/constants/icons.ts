@@ -1,0 +1,18 @@
+export const lucideIcons = [
+  "Users",
+  "Cog",
+  "Trophy",
+  "Factory",
+  "Award",
+  "Recycle",
+  "Globe2",
+  "Leaf",
+  "ShieldCheck",
+  "Boxes",
+  "Building2",
+  "Truck",
+  "Package",
+  "BadgeCheck",
+  "Target",
+  "Star",
+];

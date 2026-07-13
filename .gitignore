@@ -24,3 +24,9 @@ coverage/
 
 #md file
 .md
+
+# Visual Studio
+.vs/
+
+# ZIP archives
+*.zip

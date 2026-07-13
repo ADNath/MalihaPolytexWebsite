@@ -1,16 +1,31 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
-import type { HeroSlide } from "@/api/heroSlideApi";
+import {
+  type HeroSlideRequest,
+  type HeroSlideResponse,
+  toHeroSlideRequest,
+  uploadImage,
+} from "@/api/heroSlideApi";
+
+import { API_BASE_URL } from "@/config/app";
+
+import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
+import FileUpload from "@/components/ui/FileUpload";
+import Input from "@/components/ui/Input";
+import Modal from "@/components/ui/Modal";
+import Textarea from "@/components/ui/Textarea";
 
 interface Props {
   open: boolean;
-  slide?: HeroSlide | null;
+  heroSlide?: HeroSlideResponse | null;
+  loading?: boolean;
   onClose: () => void;
-  onSave: (slide: HeroSlide) => Promise<void>;
+  onSave: (request: HeroSlideRequest) => Promise<void>;
 }
 
-const emptySlide: HeroSlide = {
-  heroSlideId: 0,
+const defaultValues: HeroSlideRequest = {
   title: "",
   subtitle: "",
   description: "",
@@ -24,131 +39,171 @@ const emptySlide: HeroSlide = {
 
 export default function HeroSlideDialog({
   open,
-  slide,
+  heroSlide,
+  loading = false,
   onClose,
   onSave,
 }: Props) {
-  const [form, setForm] = useState<HeroSlide>(emptySlide);
+  const [uploading, setUploading] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<HeroSlideRequest>({
+    defaultValues,
+  });
 
   useEffect(() => {
-    setForm(slide ?? emptySlide);
-  }, [slide]);
+    if (!open) return;
 
-  if (!open) return null;
+    if (heroSlide) {
+      reset(toHeroSlideRequest(heroSlide));
+    } else {
+      reset(defaultValues);
+    }
+  }, [open, heroSlide, reset]);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    await onSave(form);
-  }
+  const desktopImage = watch("desktopImage");
 
-  function update<K extends keyof HeroSlide>(
-    key: K,
-    value: HeroSlide[K]
+  async function handleDesktopUpload(
+    e: React.ChangeEvent<HTMLInputElement>,
   ) {
-    setForm((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    try {
+      setUploading(true);
+
+      const response = await uploadImage(file, "heroslides");
+
+      if (response.success) {
+        setValue("desktopImage", response.data, {
+          shouldValidate: true,
+        });
+      }
+    } finally {
+      setUploading(false);
+    }
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-2xl rounded-lg bg-white p-6"
-      >
-        <h2 className="mb-6 text-xl font-bold">
-          {form.heroSlideId === 0 ? "Add Hero Slide" : "Edit Hero Slide"}
-        </h2>
-
-        <div className="space-y-4">
-          <input
-            className="w-full rounded border p-3"
-            placeholder="Title"
-            value={form.title}
-            onChange={(e) => update("title", e.target.value)}
-          />
-
-          <input
-            className="w-full rounded border p-3"
-            placeholder="Subtitle"
-            value={form.subtitle ?? ""}
-            onChange={(e) => update("subtitle", e.target.value)}
-          />
-
-          <textarea
-            className="w-full rounded border p-3"
-            rows={4}
-            placeholder="Description"
-            value={form.description ?? ""}
-            onChange={(e) => update("description", e.target.value)}
-          />
-
-          <input
-            className="w-full rounded border p-3"
-            placeholder="Button Text"
-            value={form.buttonText ?? ""}
-            onChange={(e) => update("buttonText", e.target.value)}
-          />
-
-          <input
-            className="w-full rounded border p-3"
-            placeholder="Button Url"
-            value={form.buttonUrl ?? ""}
-            onChange={(e) => update("buttonUrl", e.target.value)}
-          />
-
-          <input
-            className="w-full rounded border p-3"
-            placeholder="Desktop Image"
-            value={form.desktopImage}
-            onChange={(e) => update("desktopImage", e.target.value)}
-          />
-
-          <input
-            className="w-full rounded border p-3"
-            placeholder="Mobile Image"
-            value={form.mobileImage ?? ""}
-            onChange={(e) => update("mobileImage", e.target.value)}
-          />
-
-          <input
-            className="w-full rounded border p-3"
-            type="number"
-            placeholder="Display Order"
-            value={form.displayOrder}
-            onChange={(e) =>
-              update("displayOrder", Number(e.target.value))
-            }
-          />
-
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={form.isActive}
-              onChange={(e) => update("isActive", e.target.checked)}
-            />
-            Active
-          </label>
-        </div>
-
-        <div className="mt-6 flex justify-end gap-3">
-          <button
+    <Modal
+      open={open}
+      title={heroSlide ? "Edit Hero Slide" : "Add Hero Slide"}
+      onClose={onClose}
+      footer={
+        <div className="flex justify-end gap-3">
+          <Button
             type="button"
+            variant="outline"
             onClick={onClose}
-            className="rounded border px-4 py-2"
+            disabled={loading || uploading}
           >
             Cancel
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="submit"
-            className="rounded bg-blue-600 px-4 py-2 text-white"
+            form="hero-slide-form"
+            loading={loading}
+            disabled={uploading}
           >
             Save
-          </button>
+          </Button>
+        </div>
+      }
+    >
+      <form
+        id="hero-slide-form"
+        onSubmit={handleSubmit(onSave)}
+        className="space-y-6"
+      >
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div>
+            <FileUpload
+              label="Desktop Image"
+              preview={
+                desktopImage
+                  ? `${API_BASE_URL}${desktopImage}`
+                  : undefined
+              }
+              uploading={uploading}
+              recommendedSize="1920 × 800 px"
+              onChange={handleDesktopUpload}
+            />
+          </div>
+
+          <div className="space-y-4">
+            <Input
+              label="Title"
+              error={errors.title?.message}
+              {...register("title", {
+                required: "Title is required.",
+              })}
+            />
+
+            <Input
+              label="Subtitle"
+              {...register("subtitle")}
+            />
+
+            <Textarea
+              label="Description"
+              rows={5}
+              {...register("description")}
+            />
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <Input
+                label="Button Text"
+                {...register("buttonText")}
+              />
+
+              <Input
+                label="Button URL"
+                {...register("buttonUrl", {
+                  pattern: {
+                    value:
+                      /^(https?:\/\/|\/|#|$).*/i,
+                    message:
+                      "Please enter a valid URL.",
+                  },
+                })}
+                error={errors.buttonUrl?.message}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <Input
+                type="number"
+                label="Display Order"
+                error={errors.displayOrder?.message}
+                {...register("displayOrder", {
+                  valueAsNumber: true,
+                  required: "Display order is required.",
+                  min: {
+                    value: 1,
+                    message:
+                      "Display order must be at least 1.",
+                  },
+                })}
+              />
+
+              <div className="flex h-full items-end pb-2">
+                <Checkbox
+                  label="Active"
+                  {...register("isActive")}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }

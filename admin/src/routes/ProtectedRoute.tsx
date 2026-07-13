@@ -1,17 +1,21 @@
 import useAuth from "@/hooks/useAuth";
+import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
 
+
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export default function ProtectedRoute({ children }: Props) {
+export default function ProtectedRoute({
+  children,
+}: Props) {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return <>{children}</>;
 }

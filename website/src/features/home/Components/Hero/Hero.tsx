@@ -1,5 +1,6 @@
 // Hero.tsx
-import { useRef, useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 
@@ -9,40 +10,78 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-import hero1 from "@/assets/slider/banner1.jpg";
-import hero2 from "@/assets/slider/banner2.jpg";
-import hero3 from "@/assets/slider/banner4.jpg";
+import { getHeroSlides } from "@/services/api/heroSliderApi";
+import type { HeroSlideResponse } from "@/types/heroSlide";
+import { getImageUrl } from "@/utils/image";
 
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 
-const slides = [
-  {
-    image: hero2,
-    subtitle: "RECYCLING FOR SUSTAINABILITY",
-    title: "Turning Waste Into High Quality Fiber",
-    description:
-      "Bangladesh's First GRS Certified PSF Manufacturer committed to sustainable textiles and a better tomorrow.",
-  },
-  {
-    image: hero1,
-    subtitle: "SUSTAINABLE MANUFACTURING",
-    title: "Premium Recycled Polyester Fiber",
-    description:
-      "Producing eco-friendly recycled polyester staple fiber using world-class technology.",
-  },
-  {
-    image: hero3,
-    subtitle: "GLOBAL QUALITY",
-    title: "Building A Greener Future",
-    description:
-      "Delivering premium recycled fiber to customers around the world.",
-  },
-];
+// const slides = [
+//   {
+//     image: hero2,
+//     subtitle: "RECYCLING FOR SUSTAINABILITY",
+//     title: "Turning Waste Into High Quality Fiber",
+//     description:
+//       "Bangladesh's First GRS Certified PSF Manufacturer committed to sustainable textiles and a better tomorrow.",
+//   },
+//   {
+//     image: hero1,
+//     subtitle: "SUSTAINABLE MANUFACTURING",
+//     title: "Premium Recycled Polyester Fiber",
+//     description:
+//       "Producing eco-friendly recycled polyester staple fiber using world-class technology.",
+//   },
+//   {
+//     image: hero3,
+//     subtitle: "GLOBAL QUALITY",
+//     title: "Building A Greener Future",
+//     description:
+//       "Delivering premium recycled fiber to customers around the world.",
+//   },
+// ];
 
 export default function Hero() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const [slides, setSlides] = useState<HeroSlideResponse[]>([]);
+
+  const [loading, setLoading] = useState(true);
+
+  async function loadSlides() {
+    try {
+      setLoading(true);
+
+      const response = await getHeroSlides();
+
+      if (response.success) {
+        setSlides(
+          response.data
+            .filter((x) => x.isActive)
+            .sort((a, b) => a.displayOrder - b.displayOrder),
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    void loadSlides();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="flex h-[600px] items-center justify-center">
+        Loading...
+      </section>
+    );
+  }
+
+  if (slides.length === 0) {
+    return null;
+  }
 
   return (
     <section className="relative overflow-hidden">
@@ -59,7 +98,9 @@ export default function Hero() {
           <SwiperSlide key={slide.title}>
             <div
               className="relative h-[600px] sm:h-[680px] lg:h-[calc(100vh-120px)] bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
+              style={{
+                backgroundImage: `url(${getImageUrl(slide.desktopImage)})`,
+              }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-transparent" />
 
@@ -78,7 +119,9 @@ export default function Hero() {
                   </p>
 
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <Button to="/products">Explore Products</Button>
+                    <Button to={slide.buttonUrl || "/products"}>
+                      {slide.buttonText || "Explore Products"}
+                    </Button>
 
                     <Button to="/contact" variant="outline">
                       Contact Us

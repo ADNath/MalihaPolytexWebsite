@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MalihaPolytex.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+011f7ea2b2c4ed666e24cd0283161830198c3df7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22a84f013601afe9304c6176d2463eeb440c6c4c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MalihaPolytex.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MalihaPolytex.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

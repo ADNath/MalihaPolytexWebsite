@@ -1,464 +1,206 @@
-# Maliha Poly Tex Fiber Industry Ltd.
+# PROJECT_CONTEXT
 
-# PROJECT_CONTEXT.md
+## Current Sprint
 
-## Project Overview
+-   Polish Hero Slider UI
+-   Build remaining CMS modules
 
-This project consists of two separate applications:
+## Rules
 
-1. Public Corporate Website
-2. Admin Panel + .NET Backend API
+-   Return complete files.
+-   Preserve functionality.
+-   Work against uploaded project.
+-   Split oversized files into Part 1/2 and Part 2/2.
 
-The public website is nearly complete.
+# Backend Progress
 
-Current focus:
-Building the Admin Panel and Backend CMS.
+## Completed
 
----
-
-# Overall Project Structure
-
-MalihaPolytex/
-
-│
-├── website/          (React Public Website)
-│
-├── admin/            (React Admin Panel)
-│
-├── backend/
-│   ├── MalihaPolytex.API
-│   ├── MalihaPolytex.Application
-│   ├── MalihaPolytex.Domain
-│   └── MalihaPolytex.Infrastructure
-│
-└── PROJECT_CONTEXT.md
-
----
-
-# Frontend (Website)
-
-Tech Stack
-
-- React 19
-- Vite
-- TypeScript
-- Tailwind CSS
-- React Router
-- Lucide React
-- Swiper
-
-Design
-
-- Modern corporate
-- White theme
-- Green primary color
-- Rounded corners
-- Soft shadows
-- Responsive
-- Minimal animation
-
-Desktop design is approved.
-
-Desktop layout should not change unless specifically requested.
-
-Only responsive improvements are allowed.
-
----
-
-# Completed Website Pages
-
-✅ Home
-
-Contains
-
-- Hero Slider
-- Company Overview
-- About Section
-- Achievement
-- Video Section
-- GRS Certificate
-- CTA
-- Footer
-
----
-
-✅ About
-
-Contains
-
-- Company Overview
-- Mission
-- Vision
-- Values
-
----
-
-✅ Top Management
-
-Completed
-
----
-
-✅ Company Profile
-
-Completed
-
-Contains
-
-- Embedded PDF
-- Download PDF
-
----
-
-✅ Products
-
-Completed
-
-Features
-
-- Category Tabs
-- Dynamic Filters
-- Mobile Filter Drawer
-- Product Cards
-- Product Details
-- Responsive Layout
-
----
-
-✅ Gallery
-
-Completed
-
-Features
-
-- Responsive Grid
-- Initial 12 Images
-- Load More
-- Image Preview Modal
-
----
-
-✅ Certificates
-
-Completed
-
-Features
-
-- Three Certificate Cards
-- Image Preview Modal
-- Responsive Layout
-
----
-
-✅ Career
-
-Completed
-
-Current Openings
-
-Dummy Data
-
-Later managed by Admin Panel.
-
----
-
-✅ Contact
-
-Completed
-
-Contains
-
-- Office Information
-- Factory Information
-- Contact Form
-- Google Map
-
----
-
-# Current Website Status
-
-Frontend is essentially complete.
-
-Future work
-
-- Replace Dummy Data with API
-- Connect Admin Panel
-- SEO Improvements
-- Performance Optimization
-- Deployment
-
----
-
-# Admin Panel
-
-Tech Stack
-
-- React 19
-- Vite
-- TypeScript
-- Tailwind CSS
-- React Router
-- Axios
-- React Hook Form
-- Lucide React
-
-Admin Design
-
-- Modern Dashboard
-- Left Sidebar
-- Top Navigation
-- Responsive Drawer
-- Green Branding
-- White Theme
-
-Modules
-
-- Dashboard
-- Products
-- Gallery
-- Certificates
-- Career
-- Contact
-- Settings
-
-Authentication
-
-JWT Login
-
-No Registration
-
-Single Admin User initially
-
----
-
-# Backend
-
-Tech Stack
+### Solution Setup
 
 - .NET 9 Web API
-- SQL Server
+- Clean Architecture
 - Dapper
+- SQL Server
+- Dependency Injection
+- Global Exception Middleware
+- FluentValidation
 - JWT Authentication
 - BCrypt Password Hashing
 
-Architecture
+### Authentication
 
-Clean Architecture
+Completed
 
-Solution
+- Login API
+- JWT Token Generation
+- Password Verification
+- Protected Endpoints
+- Authentication Middleware
 
-src/
+### Common Infrastructure
 
-- MalihaPolytex.API
-- MalihaPolytex.Application
-- MalihaPolytex.Domain
-- MalihaPolytex.Infrastructure
+Completed
 
-No Modular Monolith.
+- ApiResponse Wrapper
+- FileStorageService
+- Upload Endpoint
+- Logging
+- Configuration
+- Dependency Injection Registration
+
+### Hero Slider Module
+
+Completed
+
+Database
+
+- HeroSlides table
+
+Backend
+
+- Entity
+- DTOs
+- Interfaces
+- Repository
+- Service
+- Controller
+- Validators
+- Mapping
+
+API
+
+- Get All
+- Get By Id
+- Create
+- Update
+- Delete
+- Upload Image
+
+Frontend
+
+- CRUD Completed
+- Image Upload Completed
+- Authentication Completed
+
+Current Status
+
+- CRUD is fully functional.
+- UI polish is in progress.
+
+---
+
+# Current Backend Architecture
+
+```
+Controller
+    ↓
+Service
+    ↓
+Repository
+    ↓
+SQL Server (Dapper)
+```
+
+No Entity Framework.
 
 No CQRS.
 
 No MediatR.
 
-No Entity Framework.
-
----
-
-# Backend Flow
-
-HTTP
-
-↓
-
-Controller
-
-↓
-
-IService
-
-↓
-
-Service
-
-↓
-
-IRepository
-
-↓
-
-Repository (Dapper)
-
-↓
-
-SQL Server
-
----
-
-# Application Structure
-
-Application
-
-Common
-
-- Responses
-- Exceptions
-- Constants
-- Models
-- Interfaces
-
-Features
-
-- Auth
-- Dashboard
-- Products
-- Gallery
-- Certificates
-- Careers
-- Settings
-- Contact
-
-Each Feature Contains
-
-- DTOs
-- Interfaces
-- Services
-- Validators
-- Mapping
-
----
-
-# Domain
-
-Entities
-
-- User
-- Product
-- GalleryImage
-- Certificate
-- Career
-- SiteSetting
-- ContactInformation
-
----
-
-# Infrastructure
-
-Contains
-
-- Repositories
-- Authentication
-- Database
-- File Storage
-- Extensions
-- Helpers
-
----
-
-# API
-
-Contains
-
-- Controllers
-- Middleware
-- Authorization
-- Extensions
-
-Uploads
-
-wwwroot/uploads/
-
-- products
-- gallery
-- certificates
-- careers
-
----
-
-# Development Principles
-
-Controllers contain no business logic.
-
-Repositories contain no business rules.
-
-Services contain business logic.
-
-Use Dependency Injection everywhere.
-
-Everything async.
-
-Every async method ends with Async.
-
-Strong typing.
-
-No magic strings.
-
-No duplicate code.
-
-Reusable components first.
-
-Readable code over clever code.
-
-Maintain consistency across every feature.
-
----
-
-# API Response Standard
-
-Every endpoint returns
-
-{
-    "success": true,
-    "message": "",
-    "data": {},
-    "errors": []
-}
-
-No custom response formats.
-
----
-
-# Logging
-
-Log important operations only
-
-Examples
-
-- Login
-- Product Created
-- Product Updated
-- Gallery Upload
-- Certificate Replaced
-
----
-
-# Validation
-
-Use FluentValidation.
-
-Avoid validation inside controllers.
-
 ---
 
 # File Upload
 
-Single IFileStorageService
+Single reusable upload service.
 
-All uploads go through one service.
+```
+IFileStorageService
+```
+
+Current upload folders
+
+```
+uploads/
+
+heroslides/
+
+products/
+
+gallery/
+
+certificates/
+
+careers/
+```
+
+Uploads are stored outside the published application using configuration.
+
+Database stores relative paths only.
 
 ---
 
-# Current Development Phase
+# Current Development Order
 
-Phase 1
+Next backend modules
 
-✅ Public Website Completed
+1. Dashboard
+2. Company Overview
+3. Company Video
+4. Certificates
+5. Products
+6. Gallery
+7. Careers
+8. Contact
+9. Site Settings
 
-Phase 2
+Every module follows
 
-🚧 Admin Panel
+Entity
+↓
+DTO
+↓
+Repository
+↓
+Service
+↓
+Controller
+↓
+Frontend Integration
 
-🚧 Backend API
+---
 
-Current task:
+# AI Notes
 
-Create backend solution and implement JWT authentication, then build the Admin Dashboard foundation before starting CRUD modules.
+Do NOT redesign the architecture.
+
+Hero Slider is the reference implementation.
+
+Future CRUD modules should follow the same structure and coding style.
+
+## Current Development Status
+
+Completed CMS Modules
+
+- Hero Slider
+- What We Do
+
+Current Task
+
+- Company Video CMS
+
+Development Rules
+
+- Complete one module before starting another.
+- Return complete files only.
+- Mention full file path.
+- Do not redesign architecture.
+- Follow Hero Slider CRUD pattern for all modules.
+
+Backend Architecture
+
+- Repository Interface → Domain/Interfaces
+- Repository → Infrastructure/Repositories
+- Service → Application/Features
+- DTO → Application/Features/<Module>/DTOs
+- Controller → API/Controllers

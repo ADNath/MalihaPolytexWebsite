@@ -1,0 +1,644 @@
+F:.
+│   backend.zip
+│   MalihaPolytex.sln
+│
+└───src
+    ├───MalihaPolytex.API
+    │   │   appsettings.Development.json
+    │   │   appsettings.json
+    │   │   MalihaPolytex.API.csproj
+    │   │   MalihaPolytex.API.csproj.user
+    │   │   MalihaPolytex.API.http
+    │   │   Program.cs
+    │   │
+    │   ├───Authorization
+    │   ├───bin
+    │   │   └───Debug
+    │   │       ├───net8.0
+    │   │       │   │   appsettings.Development.json
+    │   │       │   │   appsettings.json
+    │   │       │   │   BCrypt-Net-Next.dll
+    │   │       │   │   Dapper.dll
+    │   │       │   │   FluentValidation.AspNetCore.dll
+    │   │       │   │   FluentValidation.DependencyInjectionExtensions.dll
+    │   │       │   │   FluentValidation.dll
+    │   │       │   │   MalihaPolytex.API.deps.json
+    │   │       │   │   MalihaPolytex.API.dll
+    │   │       │   │   MalihaPolytex.API.exe
+    │   │       │   │   MalihaPolytex.API.pdb
+    │   │       │   │   MalihaPolytex.API.runtimeconfig.json
+    │   │       │   │   MalihaPolytex.API.staticwebassets.runtime.json
+    │   │       │   │   MalihaPolytex.Application.dll
+    │   │       │   │   MalihaPolytex.Application.pdb
+    │   │       │   │   MalihaPolytex.Domain.dll
+    │   │       │   │   MalihaPolytex.Domain.pdb
+    │   │       │   │   MalihaPolytex.Infrastructure.dll
+    │   │       │   │   MalihaPolytex.Infrastructure.pdb
+    │   │       │   │   Microsoft.AspNetCore.Authentication.JwtBearer.dll
+    │   │       │   │   Microsoft.AspNetCore.OpenApi.dll
+    │   │       │   │   Microsoft.Bcl.Cryptography.dll
+    │   │       │   │   Microsoft.Data.SqlClient.dll
+    │   │       │   │   Microsoft.Data.SqlClient.Extensions.Abstractions.dll
+    │   │       │   │   Microsoft.Data.SqlClient.Internal.Logging.dll
+    │   │       │   │   Microsoft.Extensions.Caching.Memory.dll
+    │   │       │   │   Microsoft.Extensions.Configuration.Abstractions.dll
+    │   │       │   │   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+    │   │       │   │   Microsoft.Extensions.Logging.Abstractions.dll
+    │   │       │   │   Microsoft.Extensions.Options.dll
+    │   │       │   │   Microsoft.Extensions.Primitives.dll
+    │   │       │   │   Microsoft.IdentityModel.Abstractions.dll
+    │   │       │   │   Microsoft.IdentityModel.JsonWebTokens.dll
+    │   │       │   │   Microsoft.IdentityModel.Logging.dll
+    │   │       │   │   Microsoft.IdentityModel.Protocols.dll
+    │   │       │   │   Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+    │   │       │   │   Microsoft.IdentityModel.Tokens.dll
+    │   │       │   │   Microsoft.OpenApi.dll
+    │   │       │   │   Microsoft.SqlServer.Server.dll
+    │   │       │   │   Swashbuckle.AspNetCore.Swagger.dll
+    │   │       │   │   Swashbuckle.AspNetCore.SwaggerGen.dll
+    │   │       │   │   Swashbuckle.AspNetCore.SwaggerUI.dll
+    │   │       │   │   System.Configuration.ConfigurationManager.dll
+    │   │       │   │   System.Diagnostics.EventLog.dll
+    │   │       │   │   System.Formats.Asn1.dll
+    │   │       │   │   System.IdentityModel.Tokens.Jwt.dll
+    │   │       │   │   System.Security.Cryptography.Pkcs.dll
+    │   │       │   │   System.Security.Cryptography.ProtectedData.dll
+    │   │       │   │   System.Text.Json.dll
+    │   │       │   │
+    │   │       │   ├───cs
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───de
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───es
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───fr
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───it
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───ja
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───ko
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───pl
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───pt-BR
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───ru
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───runtimes
+    │   │       │   │   ├───unix
+    │   │       │   │   │   └───lib
+    │   │       │   │   │       └───net8.0
+    │   │       │   │   │               Microsoft.Data.SqlClient.dll
+    │   │       │   │   │
+    │   │       │   │   ├───win
+    │   │       │   │   │   └───lib
+    │   │       │   │   │       └───net8.0
+    │   │       │   │   │               Microsoft.Data.SqlClient.dll
+    │   │       │   │   │               System.Diagnostics.EventLog.dll
+    │   │       │   │   │               System.Security.Cryptography.Pkcs.dll
+    │   │       │   │   │
+    │   │       │   │   ├───win-arm64
+    │   │       │   │   │   └───native
+    │   │       │   │   │           Microsoft.Data.SqlClient.SNI.dll
+    │   │       │   │   │
+    │   │       │   │   ├───win-x64
+    │   │       │   │   │   └───native
+    │   │       │   │   │           Microsoft.Data.SqlClient.SNI.dll
+    │   │       │   │   │
+    │   │       │   │   └───win-x86
+    │   │       │   │       └───native
+    │   │       │   │               Microsoft.Data.SqlClient.SNI.dll
+    │   │       │   │
+    │   │       │   ├───tr
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   ├───zh-Hans
+    │   │       │   │       Microsoft.Data.SqlClient.resources.dll
+    │   │       │   │
+    │   │       │   └───zh-Hant
+    │   │       │           Microsoft.Data.SqlClient.resources.dll
+    │   │       │
+    │   │       └───net9.0
+    │   │           │   appsettings.Development.json
+    │   │           │   appsettings.json
+    │   │           │   BCrypt-Net-Next.dll
+    │   │           │   Dapper.dll
+    │   │           │   FluentValidation.AspNetCore.dll
+    │   │           │   FluentValidation.DependencyInjectionExtensions.dll
+    │   │           │   FluentValidation.dll
+    │   │           │   MalihaPolytex.API.deps.json
+    │   │           │   MalihaPolytex.API.dll
+    │   │           │   MalihaPolytex.API.exe
+    │   │           │   MalihaPolytex.API.pdb
+    │   │           │   MalihaPolytex.API.runtimeconfig.json
+    │   │           │   MalihaPolytex.API.staticwebassets.endpoints.json
+    │   │           │   MalihaPolytex.API.staticwebassets.runtime.json
+    │   │           │   MalihaPolytex.Application.dll
+    │   │           │   MalihaPolytex.Application.pdb
+    │   │           │   MalihaPolytex.Domain.dll
+    │   │           │   MalihaPolytex.Domain.pdb
+    │   │           │   MalihaPolytex.Infrastructure.dll
+    │   │           │   MalihaPolytex.Infrastructure.pdb
+    │   │           │   Microsoft.AspNetCore.OpenApi.dll
+    │   │           │   Microsoft.Bcl.Cryptography.dll
+    │   │           │   Microsoft.Data.SqlClient.dll
+    │   │           │   Microsoft.Data.SqlClient.Extensions.Abstractions.dll
+    │   │           │   Microsoft.Data.SqlClient.Internal.Logging.dll
+    │   │           │   Microsoft.Extensions.Caching.Abstractions.dll
+    │   │           │   Microsoft.Extensions.Caching.Memory.dll
+    │   │           │   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+    │   │           │   Microsoft.Extensions.Logging.Abstractions.dll
+    │   │           │   Microsoft.Extensions.Options.dll
+    │   │           │   Microsoft.Extensions.Primitives.dll
+    │   │           │   Microsoft.IdentityModel.Abstractions.dll
+    │   │           │   Microsoft.IdentityModel.JsonWebTokens.dll
+    │   │           │   Microsoft.IdentityModel.Logging.dll
+    │   │           │   Microsoft.IdentityModel.Protocols.dll
+    │   │           │   Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+    │   │           │   Microsoft.IdentityModel.Tokens.dll
+    │   │           │   Microsoft.OpenApi.dll
+    │   │           │   Microsoft.SqlServer.Server.dll
+    │   │           │   Swashbuckle.AspNetCore.Swagger.dll
+    │   │           │   Swashbuckle.AspNetCore.SwaggerGen.dll
+    │   │           │   Swashbuckle.AspNetCore.SwaggerUI.dll
+    │   │           │   System.Configuration.ConfigurationManager.dll
+    │   │           │   System.Diagnostics.EventLog.dll
+    │   │           │   System.IdentityModel.Tokens.Jwt.dll
+    │   │           │   System.Security.Cryptography.Pkcs.dll
+    │   │           │   System.Security.Cryptography.ProtectedData.dll
+    │   │           │
+    │   │           ├───cs
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───de
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───es
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───fr
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───it
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───ja
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───ko
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───pl
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───pt-BR
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───ru
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───runtimes
+    │   │           │   ├───unix
+    │   │           │   │   └───lib
+    │   │           │   │       └───net9.0
+    │   │           │   │               Microsoft.Data.SqlClient.dll
+    │   │           │   │
+    │   │           │   ├───win
+    │   │           │   │   └───lib
+    │   │           │   │       └───net9.0
+    │   │           │   │               Microsoft.Data.SqlClient.dll
+    │   │           │   │               System.Diagnostics.EventLog.dll
+    │   │           │   │               System.Security.Cryptography.Pkcs.dll
+    │   │           │   │
+    │   │           │   ├───win-arm64
+    │   │           │   │   └───native
+    │   │           │   │           Microsoft.Data.SqlClient.SNI.dll
+    │   │           │   │
+    │   │           │   ├───win-x64
+    │   │           │   │   └───native
+    │   │           │   │           Microsoft.Data.SqlClient.SNI.dll
+    │   │           │   │
+    │   │           │   └───win-x86
+    │   │           │       └───native
+    │   │           │               Microsoft.Data.SqlClient.SNI.dll
+    │   │           │
+    │   │           ├───tr
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           ├───zh-Hans
+    │   │           │       Microsoft.Data.SqlClient.resources.dll
+    │   │           │
+    │   │           └───zh-Hant
+    │   │                   Microsoft.Data.SqlClient.resources.dll
+    │   │
+    │   ├───Controllers
+    │   │       AuthController.cs
+    │   │       FilesController.cs
+    │   │       HeroSlidesController.cs
+    │   │       SeedController.cs
+    │   │
+    │   ├───Extensions
+    │   │       ApplicationBuilderExtensions.cs
+    │   │       ServiceCollectionExtensions.cs
+    │   │
+    │   ├───Middleware
+    │   │       ExceptionMiddleware.cs
+    │   │
+    │   ├───obj
+    │   │   │   MalihaPolytex.API.csproj.nuget.dgspec.json
+    │   │   │   MalihaPolytex.API.csproj.nuget.g.props
+    │   │   │   MalihaPolytex.API.csproj.nuget.g.targets
+    │   │   │   project.assets.json
+    │   │   │   project.nuget.cache
+    │   │   │
+    │   │   └───Debug
+    │   │       ├───net8.0
+    │   │       │   │   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    │   │       │   │   apphost.exe
+    │   │       │   │   MalihaPolytex.API.AssemblyInfo.cs
+    │   │       │   │   MalihaPolytex.API.AssemblyInfoInputs.cache
+    │   │       │   │   MalihaPolytex.API.assets.cache
+    │   │       │   │   MalihaPolytex.API.csproj.AssemblyReference.cache
+    │   │       │   │   MalihaPolytex.API.csproj.BuildWithSkipAnalyzers
+    │   │       │   │   MalihaPolytex.API.csproj.CopyComplete
+    │   │       │   │   MalihaPolytex.API.csproj.CoreCompileInputs.cache
+    │   │       │   │   MalihaPolytex.API.csproj.FileListAbsolute.txt
+    │   │       │   │   MalihaPolytex.API.dll
+    │   │       │   │   MalihaPolytex.API.GeneratedMSBuildEditorConfig.editorconfig
+    │   │       │   │   MalihaPolytex.API.genruntimeconfig.cache
+    │   │       │   │   MalihaPolytex.API.GlobalUsings.g.cs
+    │   │       │   │   MalihaPolytex.API.MvcApplicationPartsAssemblyInfo.cache
+    │   │       │   │   MalihaPolytex.API.MvcApplicationPartsAssemblyInfo.cs
+    │   │       │   │   MalihaPolytex.API.pdb
+    │   │       │   │   MalihaPolytex.API.sourcelink.json
+    │   │       │   │   staticwebassets.build.json
+    │   │       │   │   staticwebassets.development.json
+    │   │       │   │
+    │   │       │   ├───ref
+    │   │       │   │       MalihaPolytex.API.dll
+    │   │       │   │
+    │   │       │   ├───refint
+    │   │       │   │       MalihaPolytex.API.dll
+    │   │       │   │
+    │   │       │   └───staticwebassets
+    │   │       │           msbuild.build.MalihaPolytex.API.props
+    │   │       │           msbuild.buildMultiTargeting.MalihaPolytex.API.props
+    │   │       │           msbuild.buildTransitive.MalihaPolytex.API.props
+    │   │       │
+    │   │       └───net9.0
+    │   │           │   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+    │   │           │   apphost.exe
+    │   │           │   MalihaPo.68C548BC.Up2Date
+    │   │           │   MalihaPolytex.API.AssemblyInfo.cs
+    │   │           │   MalihaPolytex.API.AssemblyInfoInputs.cache
+    │   │           │   MalihaPolytex.API.assets.cache
+    │   │           │   MalihaPolytex.API.csproj.AssemblyReference.cache
+    │   │           │   MalihaPolytex.API.csproj.CoreCompileInputs.cache
+    │   │           │   MalihaPolytex.API.csproj.FileListAbsolute.txt
+    │   │           │   MalihaPolytex.API.dll
+    │   │           │   MalihaPolytex.API.GeneratedMSBuildEditorConfig.editorconfig
+    │   │           │   MalihaPolytex.API.genruntimeconfig.cache
+    │   │           │   MalihaPolytex.API.GlobalUsings.g.cs
+    │   │           │   MalihaPolytex.API.MvcApplicationPartsAssemblyInfo.cache
+    │   │           │   MalihaPolytex.API.MvcApplicationPartsAssemblyInfo.cs
+    │   │           │   MalihaPolytex.API.pdb
+    │   │           │   MalihaPolytex.API.sourcelink.json
+    │   │           │   staticwebassets.build.endpoints.json
+    │   │           │   staticwebassets.build.json
+    │   │           │   staticwebassets.development.json
+    │   │           │
+    │   │           ├───ref
+    │   │           │       MalihaPolytex.API.dll
+    │   │           │
+    │   │           ├───refint
+    │   │           │       MalihaPolytex.API.dll
+    │   │           │
+    │   │           └───staticwebassets
+    │   │                   msbuild.build.MalihaPolytex.API.props
+    │   │                   msbuild.buildMultiTargeting.MalihaPolytex.API.props
+    │   │                   msbuild.buildTransitive.MalihaPolytex.API.props
+    │   │
+    │   ├───Properties
+    │   │       launchSettings.json
+    │   │
+    │   ├───uploads
+    │   │   ├───careers
+    │   │   ├───certificates
+    │   │   ├───gallery
+    │   │   └───products
+    │   └───wwwroot
+    ├───MalihaPolytex.Application
+    │   │   MalihaPolytex.Application.csproj
+    │   │
+    │   ├───bin
+    │   │   └───Debug
+    │   │       ├───net8.0
+    │   │       │       MalihaPolytex.Application.deps.json
+    │   │       │       MalihaPolytex.Application.dll
+    │   │       │       MalihaPolytex.Application.pdb
+    │   │       │       MalihaPolytex.Domain.dll
+    │   │       │       MalihaPolytex.Domain.pdb
+    │   │       │
+    │   │       └───net9.0
+    │   │               MalihaPolytex.Application.deps.json
+    │   │               MalihaPolytex.Application.dll
+    │   │               MalihaPolytex.Application.pdb
+    │   │               MalihaPolytex.Domain.dll
+    │   │               MalihaPolytex.Domain.pdb
+    │   │
+    │   ├───Common
+    │   │   ├───Constants
+    │   │   ├───Exceptions
+    │   │   │       BadRequestException.cs
+    │   │   │       NotFoundException.cs
+    │   │   │       UnauthorizedException.cs
+    │   │   │
+    │   │   ├───Interfaces
+    │   │   │       IAuthService.cs
+    │   │   │       IDateTimeProvider.cs
+    │   │   │       IDbConnectionFactory.cs
+    │   │   │       IFileStorageService.cs
+    │   │   │       IHeroSlideService.cs
+    │   │   │       IJwtTokenService.cs
+    │   │   │       IPasswordHasher.cs
+    │   │   │       IWhatWeDoItemService.cs
+    │   │   │
+    │   │   ├───Models
+    │   │   │       CurrentUser.cs
+    │   │   │       JwtSettings.cs
+    │   │   │
+    │   │   └───Responses
+    │   │           ApiResponse.cs
+    │   │
+    │   ├───Features
+    │   │   ├───Auth
+    │   │   │   ├───DTOs
+    │   │   │   │       LoginRequest.cs
+    │   │   │   │       LoginResponse.cs
+    │   │   │   │
+    │   │   │   ├───Interfaces
+    │   │   │   ├───Services
+    │   │   │   │       AuthService.cs
+    │   │   │   │
+    │   │   │   └───Validators
+    │   │   │           LoginRequestValidator.cs
+    │   │   │
+    │   │   ├───Careers
+    │   │   ├───Certificates
+    │   │   ├───Contact
+    │   │   ├───Dashboard
+    │   │   ├───Gallery
+    │   │   ├───HeroSlides
+    │   │   │   │   HeroSlideService.cs
+    │   │   │   │
+    │   │   │   └───DTOs
+    │   │   │           HeroSlideRequest.cs
+    │   │   │           HeroSlideResponse.cs
+    │   │   │
+    │   │   ├───Products
+    │   │   ├───Settings
+    │   │   └───WhatWeDoItems
+    │   │       └───DTOs
+    │   │               WhatWeDoItemRequest.cs
+    │   │               WhatWeDoItemResponse.cs
+    │   │
+    │   └───obj
+    │       │   MalihaPolytex.Application.csproj.nuget.dgspec.json
+    │       │   MalihaPolytex.Application.csproj.nuget.g.props
+    │       │   MalihaPolytex.Application.csproj.nuget.g.targets
+    │       │   project.assets.json
+    │       │   project.nuget.cache
+    │       │
+    │       └───Debug
+    │           ├───net8.0
+    │           │   │   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    │           │   │   MalihaPolytex.Application.AssemblyInfo.cs
+    │           │   │   MalihaPolytex.Application.AssemblyInfoInputs.cache
+    │           │   │   MalihaPolytex.Application.assets.cache
+    │           │   │   MalihaPolytex.Application.csproj.AssemblyReference.cache
+    │           │   │   MalihaPolytex.Application.csproj.BuildWithSkipAnalyzers
+    │           │   │   MalihaPolytex.Application.csproj.CopyComplete
+    │           │   │   MalihaPolytex.Application.csproj.CoreCompileInputs.cache
+    │           │   │   MalihaPolytex.Application.csproj.FileListAbsolute.txt
+    │           │   │   MalihaPolytex.Application.dll
+    │           │   │   MalihaPolytex.Application.GeneratedMSBuildEditorConfig.editorconfig
+    │           │   │   MalihaPolytex.Application.GlobalUsings.g.cs
+    │           │   │   MalihaPolytex.Application.pdb
+    │           │   │   MalihaPolytex.Application.sourcelink.json
+    │           │   │
+    │           │   ├───ref
+    │           │   │       MalihaPolytex.Application.dll
+    │           │   │
+    │           │   └───refint
+    │           │           MalihaPolytex.Application.dll
+    │           │
+    │           └───net9.0
+    │               │   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+    │               │   MalihaPo.E7B46162.Up2Date
+    │               │   MalihaPolytex.Application.AssemblyInfo.cs
+    │               │   MalihaPolytex.Application.AssemblyInfoInputs.cache
+    │               │   MalihaPolytex.Application.assets.cache
+    │               │   MalihaPolytex.Application.csproj.AssemblyReference.cache
+    │               │   MalihaPolytex.Application.csproj.CoreCompileInputs.cache
+    │               │   MalihaPolytex.Application.csproj.FileListAbsolute.txt
+    │               │   MalihaPolytex.Application.dll
+    │               │   MalihaPolytex.Application.GeneratedMSBuildEditorConfig.editorconfig
+    │               │   MalihaPolytex.Application.GlobalUsings.g.cs
+    │               │   MalihaPolytex.Application.pdb
+    │               │   MalihaPolytex.Application.sourcelink.json
+    │               │
+    │               ├───ref
+    │               │       MalihaPolytex.Application.dll
+    │               │
+    │               └───refint
+    │                       MalihaPolytex.Application.dll
+    │
+    ├───MalihaPolytex.Domain
+    │   │   Class1.cs
+    │   │   MalihaPolytex.Domain.csproj
+    │   │
+    │   ├───bin
+    │   │   └───Debug
+    │   │       ├───net8.0
+    │   │       │       MalihaPolytex.Domain.deps.json
+    │   │       │       MalihaPolytex.Domain.dll
+    │   │       │       MalihaPolytex.Domain.pdb
+    │   │       │
+    │   │       └───net9.0
+    │   │               MalihaPolytex.Domain.deps.json
+    │   │               MalihaPolytex.Domain.dll
+    │   │               MalihaPolytex.Domain.pdb
+    │   │
+    │   ├───Common
+    │   ├───Entities
+    │   │       HeroSlide.cs
+    │   │       User.cs
+    │   │
+    │   ├───Enums
+    │   ├───Interfaces
+    │   │       IAuthRepository.cs
+    │   │       IHeroSlideRepository.cs
+    │   │       IWhatWeDoItemRepository.cs
+    │   │
+    │   └───obj
+    │       │   MalihaPolytex.Domain.csproj.nuget.dgspec.json
+    │       │   MalihaPolytex.Domain.csproj.nuget.g.props
+    │       │   MalihaPolytex.Domain.csproj.nuget.g.targets
+    │       │   project.assets.json
+    │       │   project.nuget.cache
+    │       │
+    │       └───Debug
+    │           ├───net8.0
+    │           │   │   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    │           │   │   MalihaPolytex.Domain.AssemblyInfo.cs
+    │           │   │   MalihaPolytex.Domain.AssemblyInfoInputs.cache
+    │           │   │   MalihaPolytex.Domain.assets.cache
+    │           │   │   MalihaPolytex.Domain.csproj.BuildWithSkipAnalyzers
+    │           │   │   MalihaPolytex.Domain.csproj.CoreCompileInputs.cache
+    │           │   │   MalihaPolytex.Domain.csproj.FileListAbsolute.txt
+    │           │   │   MalihaPolytex.Domain.dll
+    │           │   │   MalihaPolytex.Domain.GeneratedMSBuildEditorConfig.editorconfig
+    │           │   │   MalihaPolytex.Domain.GlobalUsings.g.cs
+    │           │   │   MalihaPolytex.Domain.pdb
+    │           │   │   MalihaPolytex.Domain.sourcelink.json
+    │           │   │
+    │           │   ├───ref
+    │           │   │       MalihaPolytex.Domain.dll
+    │           │   │
+    │           │   └───refint
+    │           │           MalihaPolytex.Domain.dll
+    │           │
+    │           └───net9.0
+    │               │   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+    │               │   MalihaPolytex.Domain.AssemblyInfo.cs
+    │               │   MalihaPolytex.Domain.AssemblyInfoInputs.cache
+    │               │   MalihaPolytex.Domain.assets.cache
+    │               │   MalihaPolytex.Domain.csproj.CoreCompileInputs.cache
+    │               │   MalihaPolytex.Domain.csproj.FileListAbsolute.txt
+    │               │   MalihaPolytex.Domain.dll
+    │               │   MalihaPolytex.Domain.GeneratedMSBuildEditorConfig.editorconfig
+    │               │   MalihaPolytex.Domain.GlobalUsings.g.cs
+    │               │   MalihaPolytex.Domain.pdb
+    │               │   MalihaPolytex.Domain.sourcelink.json
+    │               │
+    │               ├───ref
+    │               │       MalihaPolytex.Domain.dll
+    │               │
+    │               └───refint
+    │                       MalihaPolytex.Domain.dll
+    │
+    └───MalihaPolytex.Infrastructure
+        │   MalihaPolytex.Infrastructure.csproj
+        │
+        ├───Authentication
+        │       AuthRepository.cs
+        │       BCryptPasswordHasher.cs
+        │       JwtTokenService.cs
+        │
+        ├───bin
+        │   └───Debug
+        │       ├───net8.0
+        │       │       MalihaPolytex.Application.dll
+        │       │       MalihaPolytex.Application.pdb
+        │       │       MalihaPolytex.Domain.dll
+        │       │       MalihaPolytex.Domain.pdb
+        │       │       MalihaPolytex.Infrastructure.deps.json
+        │       │       MalihaPolytex.Infrastructure.dll
+        │       │       MalihaPolytex.Infrastructure.pdb
+        │       │
+        │       └───net9.0
+        │               MalihaPolytex.Application.dll
+        │               MalihaPolytex.Application.pdb
+        │               MalihaPolytex.Domain.dll
+        │               MalihaPolytex.Domain.pdb
+        │               MalihaPolytex.Infrastructure.deps.json
+        │               MalihaPolytex.Infrastructure.dll
+        │               MalihaPolytex.Infrastructure.pdb
+        │
+        ├───Database
+        │       SqlConnectionFactory.cs
+        │
+        ├───Extensions
+        ├───FileStorage
+        │       FileStorageService.cs
+        │
+        ├───obj
+        │   │   MalihaPolytex.Infrastructure.csproj.nuget.dgspec.json
+        │   │   MalihaPolytex.Infrastructure.csproj.nuget.g.props
+        │   │   MalihaPolytex.Infrastructure.csproj.nuget.g.targets
+        │   │   project.assets.json
+        │   │   project.nuget.cache
+        │   │
+        │   └───Debug
+        │       ├───net8.0
+        │       │   │   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+        │       │   │   MalihaPolytex.Infrastructure.AssemblyInfo.cs
+        │       │   │   MalihaPolytex.Infrastructure.AssemblyInfoInputs.cache
+        │       │   │   MalihaPolytex.Infrastructure.assets.cache
+        │       │   │   MalihaPolytex.Infrastructure.csproj.AssemblyReference.cache
+        │       │   │   MalihaPolytex.Infrastructure.csproj.BuildWithSkipAnalyzers
+        │       │   │   MalihaPolytex.Infrastructure.csproj.CopyComplete
+        │       │   │   MalihaPolytex.Infrastructure.csproj.CoreCompileInputs.cache
+        │       │   │   MalihaPolytex.Infrastructure.csproj.FileListAbsolute.txt
+        │       │   │   MalihaPolytex.Infrastructure.dll
+        │       │   │   MalihaPolytex.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+        │       │   │   MalihaPolytex.Infrastructure.GlobalUsings.g.cs
+        │       │   │   MalihaPolytex.Infrastructure.pdb
+        │       │   │   MalihaPolytex.Infrastructure.sourcelink.json
+        │       │   │
+        │       │   ├───ref
+        │       │   │       MalihaPolytex.Infrastructure.dll
+        │       │   │
+        │       │   └───refint
+        │       │           MalihaPolytex.Infrastructure.dll
+        │       │
+        │       └───net9.0
+        │           │   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+        │           │   MalihaPo.7BE6E743.Up2Date
+        │           │   MalihaPolytex.Infrastructure.AssemblyInfo.cs
+        │           │   MalihaPolytex.Infrastructure.AssemblyInfoInputs.cache
+        │           │   MalihaPolytex.Infrastructure.assets.cache
+        │           │   MalihaPolytex.Infrastructure.csproj.AssemblyReference.cache
+        │           │   MalihaPolytex.Infrastructure.csproj.CoreCompileInputs.cache
+        │           │   MalihaPolytex.Infrastructure.csproj.FileListAbsolute.txt
+        │           │   MalihaPolytex.Infrastructure.dll
+        │           │   MalihaPolytex.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+        │           │   MalihaPolytex.Infrastructure.GlobalUsings.g.cs
+        │           │   MalihaPolytex.Infrastructure.pdb
+        │           │   MalihaPolytex.Infrastructure.sourcelink.json
+        │           │
+        │           ├───ref
+        │           │       MalihaPolytex.Infrastructure.dll
+        │           │
+        │           └───refint
+        │                   MalihaPolytex.Infrastructure.dll
+        │
+        └───Repositories
+            │   HeroSlideRepository.cs
+            │
+            ├───Auth
+            │       AuthRepository.cs
+            │
+            ├───Careers
+            │       CareerRepository.cs
+            │
+            ├───Certificates
+            │       CertificateRepository.cs
+            │
+            ├───Gallery
+            │       GalleryRepository.cs
+            │
+            ├───NewFolder
+            └───Products
+                    ProductRepository.cs

@@ -1,4 +1,5 @@
 using MalihaPolytex.API.Extensions;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+var uploadPath = builder.Configuration["FileStorage:RootPath"];
+
+if (!string.IsNullOrWhiteSpace(uploadPath) && Directory.Exists(uploadPath))
+{
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(uploadPath),
+        RequestPath = "/uploads"
+    });
+}
 
 app.UseCors("Default");
 

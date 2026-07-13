@@ -13,6 +13,11 @@ using MalihaPolytex.Infrastructure.Repositories.Auth;
 using MalihaPolytex.Application.Features.Auth.Services;
 using MalihaPolytex.Infrastructure.Repositories;
 using MalihaPolytex.Application.Features.HeroSlides;
+using MalihaPolytex.Application.Features.WhatWeDoItems;
+using MalihaPolytex.Application.Features.CompanyVideos;
+using MalihaPolytex.Application.Features.Certificates;
+using MalihaPolytex.Application.Features.HomepageContact;
+using MalihaPolytex.Application.Features.HomepageContacts;
 
 namespace MalihaPolytex.API.Extensions;
 
@@ -38,6 +43,14 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IHeroSlideService, HeroSlideService>();
         services.AddScoped<IHeroSlideRepository, HeroSlideRepository>();
+        services.AddScoped<IWhatWeDoItemRepository, WhatWeDoItemRepository>();
+        services.AddScoped<IWhatWeDoItemService, WhatWeDoItemService>();
+        services.AddScoped<ICompanyVideoRepository, CompanyVideoRepository>();
+        services.AddScoped<ICompanyVideoService, CompanyVideoService>();
+        services.AddScoped<ICertificateRepository, CertificateRepository>();
+        services.AddScoped<ICertificateService, CertificateService>();
+        services.AddScoped<IHomepageContactRepository, HomepageContactRepository>();
+        services.AddScoped<IHomepageContactService, HomepageContactService>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
