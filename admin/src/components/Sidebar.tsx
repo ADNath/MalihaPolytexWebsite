@@ -41,9 +41,9 @@ const menus = [
     path: "/certificate",
   },
   {
-    name: "Gallery",
-    icon: Image,
-    path: "/gallery",
+    name: "Top Management",
+    icon: Briefcase,
+    path: "/top-management",
   },
   {
     name: "Careers",

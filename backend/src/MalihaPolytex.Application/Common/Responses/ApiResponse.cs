@@ -1,3 +1,5 @@
+using MalihaPolytex.Application.Features.ManagementMembers.DTOs;
+
 namespace MalihaPolytex.Application.Common.Responses;
 
 public class ApiResponse<T>
@@ -33,4 +35,5 @@ public class ApiResponse<T>
             Errors = errors ?? []
         };
     }
+
 }

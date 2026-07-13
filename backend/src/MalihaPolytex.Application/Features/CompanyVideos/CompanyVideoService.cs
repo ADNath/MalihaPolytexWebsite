@@ -24,6 +24,7 @@ public class CompanyVideoService : ICompanyVideoService
             Title = x.Title,
             Description = x.Description,
             VideoUrl = x.VideoUrl,
+            VideoThumbnail = x.VideoThumbnail,
             DisplayOrder = x.DisplayOrder,
             IsActive = x.IsActive
         });
@@ -42,6 +43,7 @@ public class CompanyVideoService : ICompanyVideoService
             Title = companyVideo.Title,
             Description = companyVideo.Description,
             VideoUrl = companyVideo.VideoUrl,
+            VideoThumbnail = companyVideo.VideoThumbnail,
             DisplayOrder = companyVideo.DisplayOrder,
             IsActive = companyVideo.IsActive
         };
@@ -54,6 +56,7 @@ public class CompanyVideoService : ICompanyVideoService
             Title = request.Title,
             Description = request.Description,
             VideoUrl = request.VideoUrl,
+            VideoThumbnail = request.VideoThumbnail,
             DisplayOrder = request.DisplayOrder,
             IsActive = request.IsActive
         };
@@ -69,6 +72,7 @@ public class CompanyVideoService : ICompanyVideoService
             Title = request.Title,
             Description = request.Description,
             VideoUrl = request.VideoUrl,
+            VideoThumbnail = request.VideoThumbnail,
             DisplayOrder = request.DisplayOrder,
             IsActive = request.IsActive
         };

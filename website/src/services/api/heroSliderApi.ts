@@ -1,5 +1,3 @@
-
-
 import api from "@/api/axios";
 import type { ApiResponse } from "@/types/api";
 import type { HeroSlideResponse } from "@/types/heroSlide";

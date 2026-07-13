@@ -4,13 +4,13 @@ import { X } from "lucide-react";
 interface VideoModalProps {
   open: boolean;
   onClose: () => void;
-  videoId: string;
+  videoUrl: string;
 }
 
 export default function VideoModal({
   open,
   onClose,
-  videoId,
+  videoUrl,
 }: VideoModalProps) {
   useEffect(() => {
     if (!open) return;
@@ -31,6 +31,7 @@ export default function VideoModal({
   }, [open, onClose]);
 
   if (!open) return null;
+  const iframeUrl = `${videoUrl}${videoUrl.includes("?") ? "&" : "?"}autoplay=1`;
 
   return (
     <div
@@ -52,9 +53,9 @@ export default function VideoModal({
 
         <div className="aspect-video overflow-hidden rounded-2xl bg-black shadow-2xl">
           <iframe
-            src={`https://fast.wistia.net/embed/iframe/${videoId}?autoplay=1`}
+            src={iframeUrl}
             title="Company Video"
-            allow="autoplay; fullscreen"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
             allowFullScreen
             className="h-full w-full"
           />

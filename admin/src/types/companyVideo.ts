@@ -3,6 +3,7 @@ export interface CompanyVideo {
   title: string;
   description: string | null;
   videoUrl: string;
+  videoThumbnail: string;
   displayOrder: number;
   isActive: boolean;
 }
@@ -11,6 +12,7 @@ export interface CompanyVideoRequest {
   title: string;
   description: string | null;
   videoUrl: string;
+  videoThumbnail: string;
   displayOrder: number;
   isActive: boolean;
 }

@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { Play } from "lucide-react";
 
-import { companyVideoData } from "./companyVideoData";
+import type { CompanyVideoResponse } from "@/types/companyVideo";
+
 import VideoModal from "@/features/home/Components/VideoModal";
 
-export default function CompanyVideoPlayer() {
-  const [isOpen, setIsOpen] = useState(false);
+interface Props {
+  video: CompanyVideoResponse;
+}
 
+export default function CompanyVideoPlayer({
+  video,
+}: Props) {
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(video);
+  
   return (
     <>
       <div className="relative overflow-hidden rounded-2xl shadow-lg">
         <img
-          src={companyVideoData.videoThumbnail}
-          alt="Maliha Poly Tex Company Video"
+          src={video.videoThumbnail}
+          alt={video.title}
           className="aspect-video w-full object-cover"
         />
 
@@ -47,7 +55,7 @@ export default function CompanyVideoPlayer() {
       <VideoModal
         open={isOpen}
         onClose={() => setIsOpen(false)}
-        videoId={companyVideoData.videoId}
+        videoUrl={video.videoUrl}
       />
     </>
   );

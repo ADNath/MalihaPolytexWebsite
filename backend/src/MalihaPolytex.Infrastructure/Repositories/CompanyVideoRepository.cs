@@ -51,7 +51,7 @@ INSERT INTO CompanyVideos
     VideoUrl,
     DisplayOrder,
     IsActive,
-    CreatedDate
+    CreatedDate,VideoThumbnail
 )
 VALUES
 (
@@ -60,7 +60,7 @@ VALUES
     @VideoUrl,
     @DisplayOrder,
     @IsActive,
-    SYSUTCDATETIME()
+    SYSUTCDATETIME(),@VideoThumbnail
 );
 
 SELECT CAST(SCOPE_IDENTITY() AS INT);";
@@ -78,6 +78,7 @@ SET
     Title = @Title,
     Description = @Description,
     VideoUrl = @VideoUrl,
+    VideoThumbnail = @VideoThumbnail,
     DisplayOrder = @DisplayOrder,
     IsActive = @IsActive,
     ModifiedDate = SYSUTCDATETIME()

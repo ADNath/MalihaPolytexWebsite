@@ -1,12 +1,64 @@
+import { useEffect, useState } from "react";
+
 import Container from "@/components/ui/Container";
+
+import { getHomepageContacts } from "@/services/api/homepageContactApi";
+import type { HomepageContactResponse } from "@/types/homepageContact";
+
 import { contactData } from "./contactData";
 
 export default function ContactUs() {
+  const [contacts, setContacts] = useState<HomepageContactResponse[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  async function loadContacts() {
+    try {
+      setLoading(true);
+
+      const response = await getHomepageContacts();
+
+      if (response.success) {
+        setContacts(
+          response.data
+            .filter((x) => x.isActive)
+            .sort((a, b) => a.displayOrder - b.displayOrder),
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    void loadContacts();
+  }, []);
+
+  if (loading) {
+    return null;
+  }
+
+  const data = contactData.map((item) => ({
+    ...item,
+    lines: [...item.lines],
+  }));
+
+  const contact = contacts.find((x) => x.isActive);
+
+  if (contact) {
+    data[0].lines = contact.phones.map((phone) => ({
+      text: phone,
+      href: `tel:${phone.replace(/\s+/g, "")}`,
+    }));
+
+    data[1].lines = contact.emails.map((email) => ({
+      text: email,
+      href: `mailto:${email}`,
+    }));
+  }
+  console.log(contacts);
   return (
     <section className="bg-gray-50 py-16">
       <Container size="xl">
-        {/* Section Header */}
-
         <div className="mx-auto mb-10 max-w-2xl text-center">
           <h2 className="text-3xl font-bold uppercase tracking-[0.15em] text-primary">
             Get in Touch
@@ -17,10 +69,8 @@ export default function ContactUs() {
           </p>
         </div>
 
-        {/* Contact Cards */}
-
         <div className="grid gap-6 lg:grid-cols-3">
-          {contactData.map((item) => {
+          {data.map((item) => {
             const Icon = item.icon;
 
             return (
@@ -28,19 +78,13 @@ export default function ContactUs() {
                 key={item.title}
                 className="group rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
               >
-                {/* Icon */}
-
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                   <Icon className="h-6 w-6 text-primary" />
                 </div>
 
-                {/* Title */}
-
                 <h3 className="mb-4 text-xl font-semibold text-gray-900">
                   {item.title}
                 </h3>
-
-                {/* Content */}
 
                 <div className="space-y-2">
                   {item.lines.map((line) =>
@@ -59,11 +103,9 @@ export default function ContactUs() {
                       >
                         {line.text}
                       </p>
-                    )
+                    ),
                   )}
                 </div>
-
-                {/* Footer */}
 
                 {item.actionLabel &&
                   (item.href ? (
@@ -79,7 +121,7 @@ export default function ContactUs() {
                       }
                       className="mt-5 inline-flex text-sm font-semibold text-primary transition-colors hover:text-primary/80"
                     >
-                      {item.actionLabel} →
+                      {item.actionLabel}
                     </a>
                   ) : (
                     <p className="mt-5 text-sm text-gray-500">

@@ -10,6 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import CompanyVideosPage from "@/pages/CompanyVideos/CompanyVideosPage";
 import CertificatesPage from "@/pages/Certificates/CertificatesPage";
 import HomepageContactsPage from "@/pages/HomepageContacts/homePageContactPage";
+import ManagementMembersPage from "@/pages/ManagementMembers/ManagementMembersPage";
 
 export default function AppRoutes() {
   return (
@@ -34,6 +35,7 @@ export default function AppRoutes() {
         <Route path="/company-video" element={<CompanyVideosPage />} />
         <Route path="/certificate" element={<CertificatesPage />} />
         <Route path="/home-contact" element={<HomepageContactsPage />} />
+        <Route path="/top-management" element={<ManagementMembersPage />} />
 
         <Route path="*" element={<Navigate to="/hero-slides" replace />} />
       </Route>

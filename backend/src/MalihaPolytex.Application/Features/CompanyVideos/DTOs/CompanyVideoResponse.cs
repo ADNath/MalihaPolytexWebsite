@@ -9,6 +9,7 @@ public class CompanyVideoResponse
     public string? Description { get; set; }
 
     public string VideoUrl { get; set; } = string.Empty;
+    public string VideoThumbnail { get; set; } = string.Empty;
 
     public int DisplayOrder { get; set; }
 

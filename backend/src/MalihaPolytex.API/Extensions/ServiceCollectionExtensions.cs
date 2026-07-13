@@ -18,6 +18,7 @@ using MalihaPolytex.Application.Features.CompanyVideos;
 using MalihaPolytex.Application.Features.Certificates;
 using MalihaPolytex.Application.Features.HomepageContact;
 using MalihaPolytex.Application.Features.HomepageContacts;
+using MalihaPolytex.Application.Features.ManagementMembers;
 
 namespace MalihaPolytex.API.Extensions;
 
@@ -51,6 +52,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICertificateService, CertificateService>();
         services.AddScoped<IHomepageContactRepository, HomepageContactRepository>();
         services.AddScoped<IHomepageContactService, HomepageContactService>();
+        services.AddScoped<IManagementMemberRepository, ManagementMemberRepository>();
+        services.AddScoped<IManagementMemberService, ManagementMemberService>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

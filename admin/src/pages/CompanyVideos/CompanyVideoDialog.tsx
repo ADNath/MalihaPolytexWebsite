@@ -24,6 +24,7 @@ const defaultValues: CompanyVideoRequest = {
   title: "",
   description: "",
   videoUrl: "",
+  videoThumbnail:"",
   displayOrder: 1,
   isActive: true,
 };
@@ -52,6 +53,7 @@ export default function CompanyVideoDialog({
         title: companyVideo.title,
         description: companyVideo.description ?? "",
         videoUrl: companyVideo.videoUrl,
+        videoThumbnail: companyVideo.videoThumbnail,
         displayOrder: companyVideo.displayOrder,
         isActive: companyVideo.isActive,
       });
@@ -111,6 +113,19 @@ export default function CompanyVideoDialog({
           error={errors.videoUrl?.message}
           {...register("videoUrl", {
             required: "Video URL is required.",
+            pattern: {
+              value: /^https?:\/\/.+/i,
+              message: "Please enter a valid URL.",
+            },
+          })}
+        />
+        
+        <Input
+          label="Thumanil URL"
+          placeholder="https://fast.wistia.net/embed/iframe/..."
+          error={errors.videoThumbnail?.message}
+          {...register("videoThumbnail", {
+            required: "Thumbnail URL is required.",
             pattern: {
               value: /^https?:\/\/.+/i,
               message: "Please enter a valid URL.",

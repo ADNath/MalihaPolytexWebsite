@@ -133,6 +133,9 @@ export default function CompanyVideosPage() {
                 <th className="px-5 py-4 text-left text-sm font-semibold">
                   Video URL
                 </th>
+                <th className="px-5 py-4 text-left text-sm font-semibold">
+                  Thumbnail URL
+                </th>
 
                 <th className="px-5 py-4 text-center text-sm font-semibold">
                   Order
@@ -172,6 +175,15 @@ export default function CompanyVideosPage() {
                       title={item.videoUrl}
                     >
                       {item.videoUrl}
+                    </div>
+                  </td>
+
+                  <td className="max-w-xs px-5 py-4">
+                    <div
+                      className="truncate text-sm text-blue-600"
+                      title={item.videoThumbnail}
+                    >
+                      {item.videoThumbnail}
                     </div>
                   </td>
 
