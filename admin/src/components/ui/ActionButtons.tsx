@@ -1,11 +1,13 @@
-import { Pencil, Trash2 } from "lucide-react";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 
 interface Props {
+  onView?: () => void;
   onEdit: () => void;
   onDelete: () => void;
 }
 
 export default function ActionButtons({
+  onView,
   onEdit,
   onDelete,
 }: Props) {
@@ -23,6 +25,13 @@ export default function ActionButtons({
         className="rounded-lg bg-red-600 p-2 text-white hover:bg-red-700"
       >
         <Trash2 size={18} />
+      </button>
+
+      <button
+        onClick={onView}
+        className="rounded-lg bg-red-600 p-2 text-white hover:bg-red-700"
+      >
+        <Eye size={18} />
       </button>
     </div>
   );

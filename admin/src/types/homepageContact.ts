@@ -10,6 +10,9 @@ export interface HomepageContactResponse {
   displayOrder: number;
 
   isActive: boolean;
+  address: string;
+  mapUrl: string;
+  officeHours: string;
 }
 
 export interface HomepageContactRequest {
@@ -22,6 +25,9 @@ export interface HomepageContactRequest {
   displayOrder: number;
 
   isActive: boolean;
+  address: string;
+  mapUrl: string;
+  officeHours: string;
 }
 
 export function toHomepageContactRequest(
@@ -33,5 +39,8 @@ export function toHomepageContactRequest(
     emails: [...contact.emails],
     displayOrder: contact.displayOrder,
     isActive: contact.isActive,
+    address: contact.address,
+    mapUrl: contact.mapUrl,
+    officeHours: contact.officeHours,
   };
 }

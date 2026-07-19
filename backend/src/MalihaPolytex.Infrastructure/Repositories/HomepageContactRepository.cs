@@ -21,8 +21,11 @@ public class HomepageContactRepository : IHomepageContactRepository
             SELECT
                 HomepageContactId,
                 Title,
+                Address,
+                MapUrl,
                 Phones,
                 Emails,
+                OfficeHours,
                 DisplayOrder,
                 IsActive,
                 CreatedAt,
@@ -44,8 +47,11 @@ public class HomepageContactRepository : IHomepageContactRepository
             SELECT
                 HomepageContactId,
                 Title,
+                Address,
+                MapUrl,
                 Phones,
                 Emails,
+                OfficeHours,
                 DisplayOrder,
                 IsActive,
                 CreatedAt,
@@ -72,8 +78,11 @@ public class HomepageContactRepository : IHomepageContactRepository
             INSERT INTO HomepageContacts
             (
                 Title,
+                Address,
+                MapUrl,
                 Phones,
                 Emails,
+                OfficeHours,
                 DisplayOrder,
                 IsActive,
                 CreatedAt,
@@ -82,8 +91,11 @@ public class HomepageContactRepository : IHomepageContactRepository
             VALUES
             (
                 @Title,
+                @Address,
+                @MapUrl,
                 @Phones,
                 @Emails,
+                @OfficeHours,
                 @DisplayOrder,
                 @IsActive,
                 GETDATE(),
@@ -106,8 +118,11 @@ public class HomepageContactRepository : IHomepageContactRepository
             UPDATE HomepageContacts
             SET
                 Title = @Title,
+                Address = @Address,
+                MapUrl = @MapUrl,
                 Phones = @Phones,
                 Emails = @Emails,
+                OfficeHours = @OfficeHours,
                 DisplayOrder = @DisplayOrder,
                 IsActive = @IsActive,
                 UpdatedAt = GETDATE(),

@@ -4,8 +4,8 @@ import {
   LayoutDashboard,
   Package,
   Phone,
-  Settings,
-  Image,Folder
+  Handshake,UsersRound,BookOpenCheck,SquarePlay,
+  Award,MailQuestion
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -22,12 +22,12 @@ const menus = [
   },
   {
     name: "What we do",
-    icon: Package,
+    icon: Handshake,
     path: "/What-we-do",
   },
   {
     name: "Company Video",
-    icon: Image,
+    icon: SquarePlay,
     path: "/Company-video",
   },
   {
@@ -37,29 +37,35 @@ const menus = [
   },
   {
     name: "Certificate(Homepage)",
-    icon: Folder,
+    icon: BookOpenCheck,
     path: "/certificate",
   },
   {
     name: "Top Management",
-    icon: Briefcase,
+    icon: UsersRound,
     path: "/top-management",
   },
   {
-    name: "Careers",
+    name: "Company Profile",
     icon: Briefcase,
-    path: "/careers",
+    path: "/company-profile",
   },
   {
-    name: "Contact",
-    icon: Phone,
-    path: "/contact",
+    name: "Products",
+    icon: Package,
+    path: "/products",
   },
   {
-    name: "Settings",
-    icon: Settings,
-    path: "/settings",
+    name: "General Certificates",
+    icon: Award,
+    path: "/general-certificates",
   },
+  {
+    name: "Inquiries",
+    icon: MailQuestion,
+    path: "/Inquiries",
+  },
+  
 ];
 
 export default function Sidebar() {

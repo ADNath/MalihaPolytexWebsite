@@ -27,4 +27,9 @@ public class HomepageContact
     public DateTime? UpdatedAt { get; set; }
 
     public int? UpdatedBy { get; set; }
+    public string Address { get; set; } = string.Empty;
+
+    public string? MapUrl { get; set; }
+
+    public string? OfficeHours { get; set; }
 }

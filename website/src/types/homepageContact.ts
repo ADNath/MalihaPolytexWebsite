@@ -1,13 +1,15 @@
 export interface HomepageContactResponse {
   homepageContactId: number;
-
   title: string;
 
-  phones: string[];
+  address: string;
+  mapUrl: string;
 
+  phones: string[];
   emails: string[];
 
-  displayOrder: number;
+  officeHours: string;
 
+  displayOrder: number;
   isActive: boolean;
 }

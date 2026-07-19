@@ -11,6 +11,10 @@ import CompanyVideosPage from "@/pages/CompanyVideos/CompanyVideosPage";
 import CertificatesPage from "@/pages/Certificates/CertificatesPage";
 import HomepageContactsPage from "@/pages/HomepageContacts/homePageContactPage";
 import ManagementMembersPage from "@/pages/ManagementMembers/ManagementMembersPage";
+import CompanyProfilesPage from "@/features/companyProfile/CompanyProfilesPage";
+import ProductsPage from "@/features/products/ProductPage";
+import GeneralCertificatesPage from "@/features/generalCertificates/GeneralCertificatesPage";
+import ContactInquiriesPage from "@/features/ContactInquiries/ContactInquiriesPage";
 
 export default function AppRoutes() {
   return (
@@ -36,6 +40,13 @@ export default function AppRoutes() {
         <Route path="/certificate" element={<CertificatesPage />} />
         <Route path="/home-contact" element={<HomepageContactsPage />} />
         <Route path="/top-management" element={<ManagementMembersPage />} />
+        <Route path="/company-profile" element={<CompanyProfilesPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route
+          path="/general-certificates"
+          element={<GeneralCertificatesPage />}
+        />
+        <Route path="/Inquiries" element={<ContactInquiriesPage />} />
 
         <Route path="*" element={<Navigate to="/hero-slides" replace />} />
       </Route>

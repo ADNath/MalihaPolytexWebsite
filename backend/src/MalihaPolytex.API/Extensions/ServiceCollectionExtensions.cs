@@ -19,6 +19,15 @@ using MalihaPolytex.Application.Features.Certificates;
 using MalihaPolytex.Application.Features.HomepageContact;
 using MalihaPolytex.Application.Features.HomepageContacts;
 using MalihaPolytex.Application.Features.ManagementMembers;
+using MalihaPolytex.Application.Features.CompanyProfiles;
+using Application.Services;
+using MalihaPolytex.Application.Features.Products;
+using MalihaPolytex.Application.Interfaces;
+using MalihaPolytex.Application.Services;
+using MalihaPolyTex.Api.Repositories.Interfaces;
+using MalihaPolyTex.Api.Services.Interfaces;
+using MalihaPolyTex.Api.Repositories;
+using MalihaPolytex.Application.Features.ContactInquiries;
 
 namespace MalihaPolytex.API.Extensions;
 
@@ -54,6 +63,14 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IHomepageContactService, HomepageContactService>();
         services.AddScoped<IManagementMemberRepository, ManagementMemberRepository>();
         services.AddScoped<IManagementMemberService, ManagementMemberService>();
+        services.AddScoped<ICompanyProfileService, CompanyProfileService>();
+        services.AddScoped<ICompanyProfileRepository, CompanyProfileRepository>();
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IGeneralCertificateRepository, GeneralCertificateRepository>();
+        services.AddScoped<IGeneralCertificateService, GeneralCertificateService>();
+        services.AddScoped<IContactInquiryRepository, ContactInquiryRepository>();
+        services.AddScoped<IContactInquiryService, ContactInquiryService>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

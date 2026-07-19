@@ -30,7 +30,8 @@ public class FileStorageService : IFileStorageService
             ".jpg",
             ".jpeg",
             ".png",
-            ".webp"
+            ".webp",
+            ".pdf"
         };
 
         if (!allowedExtensions.Contains(extension))

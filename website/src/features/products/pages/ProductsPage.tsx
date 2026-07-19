@@ -1,21 +1,28 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/common/PageHero";
 
 import FilterSection from "../components/FilterSection/FilterSection";
 import ActiveFilters from "../components/FilterSection/ActiveFilters";
-
 import MobileFilterBar from "../components/Mobile/MobileFilterBar";
-
 import ProductList from "../components/ProductList/ProductList";
 
 import { productCategories } from "../data/productFilters";
-import { demoProducts } from "../data/demoProducts";
 import { filterProducts } from "../utils/filterProducts";
+
 import usePageTitle from "@/hooks/usePageTitle";
+import { getImageUrl } from "@/utils/image";
+
+import { getProducts } from "@/services/api/productApi";
+import type { Product } from "../types/product";
 
 export default function ProductsPage() {
+  usePageTitle("Products | Maliha Poly Tex Fiber Industry Ltd.");
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const [selectedFilters, setSelectedFilters] = useState<
@@ -23,19 +30,60 @@ export default function ProductsPage() {
   >({});
 
   const currentCategory =
-    productCategories.find((category) => category.id === selectedCategory) ??
-    productCategories[0];
+    productCategories.find(
+      (category) => category.id === selectedCategory,
+    ) ?? productCategories[0];
 
   const filteredProducts = useMemo(() => {
-    return filterProducts(demoProducts, selectedCategory, selectedFilters);
-  }, [selectedCategory, selectedFilters]);
+    return filterProducts(
+      products,
+      selectedCategory,
+      selectedFilters,
+    );
+  }, [products, selectedCategory, selectedFilters]);
+
+  async function loadProducts() {
+    try {
+      setLoading(true);
+
+      const response = await getProducts();
+
+      if (response.success) {
+        const data: Product[] = (response.data ?? [])
+          .filter((x) => x.isActive)
+          .sort((a, b) => a.displayOrder - b.displayOrder)
+          .map((x) => ({
+            id: x.productId,
+            category: x.category
+              .toLowerCase()
+              .replace(/\s+/g, "-"),
+            name: x.name,
+            image: getImageUrl(x.image),
+            denier: x.denier ?? undefined,
+            cuttingLength: x.cuttingLength ?? undefined,
+            color: x.color ?? undefined,
+          }));
+
+        setProducts(data);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    void loadProducts();
+  }, []);
 
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategory(categoryId);
     setSelectedFilters({});
   };
 
-  const handleFilterChange = (key: string, value: string | null) => {
+  const handleFilterChange = (
+    key: string,
+    value: string | null,
+  ) => {
     setSelectedFilters((prev) => ({
       ...prev,
       [key]: value,
@@ -56,8 +104,9 @@ export default function ProductsPage() {
 
   const hasActiveFilters =
     selectedCategory !== "all" ||
-    Object.values(selectedFilters).some((v) => v !== null);
-  usePageTitle("Products | Maliha Poly Tex Fiber Industry Ltd.");
+    Object.values(selectedFilters).some(
+      (value) => value !== null,
+    );
 
   return (
     <>
@@ -74,7 +123,7 @@ export default function ProductsPage() {
         ]}
       />
 
-      <section className="py-5 lg:py-5">
+          <section className="py-5 lg:py-5">
         <Container size="xl">
           <div className="space-y-8">
             {/* Mobile */}
@@ -110,7 +159,13 @@ export default function ProductsPage() {
               />
             )}
 
-            <ProductList products={filteredProducts} />
+            {loading ? (
+              <div className="rounded-3xl border border-gray-200 bg-white py-20 text-center text-gray-500">
+                Loading products...
+              </div>
+            ) : (
+              <ProductList products={filteredProducts} />
+            )}
           </div>
         </Container>
       </section>

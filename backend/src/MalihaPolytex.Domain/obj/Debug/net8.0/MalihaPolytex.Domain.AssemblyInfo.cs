@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MalihaPolytex.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f72c20d337fa5e65cd5316d0ba382d419f0765d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1d9a96d16e7bd71520aa63d768ddf9140802a2b")]
 [assembly: System.Reflection.AssemblyProductAttribute("MalihaPolytex.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MalihaPolytex.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

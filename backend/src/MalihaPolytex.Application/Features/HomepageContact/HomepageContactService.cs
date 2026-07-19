@@ -26,8 +26,11 @@ public class HomepageContactService : IHomepageContactService
         {
             HomepageContactId = contact.HomepageContactId,
             Title = contact.Title,
+            Address = contact.Address,
+            MapUrl = contact.MapUrl,
             Phones = Deserialize(contact.Phones),
             Emails = Deserialize(contact.Emails),
+            OfficeHours = contact.OfficeHours,
             DisplayOrder = contact.DisplayOrder,
             IsActive = contact.IsActive
         });
@@ -44,8 +47,11 @@ public class HomepageContactService : IHomepageContactService
         {
             HomepageContactId = contact.HomepageContactId,
             Title = contact.Title,
+            Address = contact.Address,
+            MapUrl = contact.MapUrl,
             Phones = Deserialize(contact.Phones),
             Emails = Deserialize(contact.Emails),
+            OfficeHours = contact.OfficeHours,
             DisplayOrder = contact.DisplayOrder,
             IsActive = contact.IsActive
         };
@@ -56,8 +62,11 @@ public class HomepageContactService : IHomepageContactService
         var entity = new Domain.Entities.HomepageContact
         {
             Title = request.Title,
+            Address = request.Address,
+            MapUrl = request.MapUrl,
             Phones = JsonSerializer.Serialize(request.Phones),
             Emails = JsonSerializer.Serialize(request.Emails),
+            OfficeHours = request.OfficeHours,
             DisplayOrder = request.DisplayOrder,
             IsActive = request.IsActive
         };
@@ -75,8 +84,11 @@ public class HomepageContactService : IHomepageContactService
             throw new NotFoundException("Homepage contact not found.");
 
         entity.Title = request.Title;
+        entity.Address = request.Address;
+        entity.MapUrl = request.MapUrl;
         entity.Phones = JsonSerializer.Serialize(request.Phones);
         entity.Emails = JsonSerializer.Serialize(request.Emails);
+        entity.OfficeHours = request.OfficeHours;
         entity.DisplayOrder = request.DisplayOrder;
         entity.IsActive = request.IsActive;
 
