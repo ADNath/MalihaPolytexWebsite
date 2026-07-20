@@ -2,12 +2,15 @@ import { useEffect } from "react";
 import { X } from "lucide-react";
 import type { ReactNode } from "react";
 
+import clsx from "clsx";
+
 interface Props {
   open: boolean;
   title: string;
   children: ReactNode;
   onClose: () => void;
   footer?: ReactNode;
+  maxWidth?: string;
 }
 
 export default function Modal({
@@ -16,6 +19,7 @@ export default function Modal({
   children,
   onClose,
   footer,
+  maxWidth = "max-w-3xl",
 }: Props) {
   useEffect(() => {
     if (!open) return;
@@ -41,7 +45,10 @@ export default function Modal({
       onClick={onClose}
     >
       <div
-        className="flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-xl bg-white shadow-xl"
+        className={clsx(
+          "flex max-h-[90vh] w-full flex-col overflow-hidden rounded-xl bg-white shadow-xl",
+          maxWidth
+        )}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b px-6 py-4">

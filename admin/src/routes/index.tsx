@@ -15,6 +15,9 @@ import CompanyProfilesPage from "@/features/companyProfile/CompanyProfilesPage";
 import ProductsPage from "@/features/products/ProductPage";
 import GeneralCertificatesPage from "@/features/generalCertificates/GeneralCertificatesPage";
 import ContactInquiriesPage from "@/features/ContactInquiries/ContactInquiriesPage";
+import CareerDepartmentsPage from "@/pages/CareerDepartments/CareerDepartmentsPage";
+import JobOpeningsPage from "@/features/JobOpenings/JobOpeningsPage";
+import JobApplicationsPage from "@/features/JobApplications/JobApplicationsPage";
 
 export default function AppRoutes() {
   return (
@@ -47,6 +50,9 @@ export default function AppRoutes() {
           element={<GeneralCertificatesPage />}
         />
         <Route path="/Inquiries" element={<ContactInquiriesPage />} />
+        <Route path="/career-dept" element={<CareerDepartmentsPage />} />
+        <Route path="/job-opening" element={<JobOpeningsPage />} />
+        <Route path="/job-application" element={<JobApplicationsPage />} />
 
         <Route path="*" element={<Navigate to="/hero-slides" replace />} />
       </Route>

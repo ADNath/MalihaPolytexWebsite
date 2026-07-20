@@ -5,7 +5,7 @@ import {
   Package,
   Phone,
   Handshake,UsersRound,BookOpenCheck,SquarePlay,
-  Award,MailQuestion
+  Award,MailQuestion,Building,File
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -64,7 +64,23 @@ const menus = [
     name: "Inquiries",
     icon: MailQuestion,
     path: "/Inquiries",
+  },  
+  {
+    name: "Career Dept",
+    icon: Building,
+    path: "/career-dept",
   },
+  {
+    name: "Job Opening",
+    icon: File,
+    path: "/job-opening",
+  },
+  {
+    name: "Job Application",
+    icon: File,
+    path: "/job-application",
+  },
+  
   
 ];
 

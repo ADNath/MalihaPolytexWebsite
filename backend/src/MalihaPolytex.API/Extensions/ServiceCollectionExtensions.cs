@@ -28,6 +28,10 @@ using MalihaPolyTex.Api.Repositories.Interfaces;
 using MalihaPolyTex.Api.Services.Interfaces;
 using MalihaPolyTex.Api.Repositories;
 using MalihaPolytex.Application.Features.ContactInquiries;
+using MalihaPolytex.Application.Features.CareerDepartments;
+using MalihaPolytex.Application.Features.JobOpenings;
+using MalihaPolytex.Application.Features.JobApplications.Interfaces;
+using MalihaPolytex.Application.Features.JobApplications.Services;
 
 namespace MalihaPolytex.API.Extensions;
 
@@ -71,6 +75,14 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IGeneralCertificateService, GeneralCertificateService>();
         services.AddScoped<IContactInquiryRepository, ContactInquiryRepository>();
         services.AddScoped<IContactInquiryService, ContactInquiryService>();
+        services.AddScoped<ICareerDepartmentRepository, CareerDepartmentRepository>();
+        services.AddScoped<ICareerDepartmentService, CareerDepartmentService>();
+
+        services.AddScoped<IJobOpeningService, JobOpeningService>();
+        services.AddScoped<IJobOpeningRepository, JobOpeningRepository>();
+
+        services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
+        services.AddScoped<IJobApplicationService, JobApplicationService>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

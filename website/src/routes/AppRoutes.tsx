@@ -29,7 +29,7 @@ export default function AppRoutes() {
             path="/career/current-opening"
             element={<CurrentOpeningPage />}
           />
-          <Route path="/career/:slug" element={<JobDetailsPage />} />
+          <Route path="/career/:jobId" element={<JobDetailsPage />} />
           <Route
             path="/career/walk-in-application"
             element={<WalkInApplicationPage />}

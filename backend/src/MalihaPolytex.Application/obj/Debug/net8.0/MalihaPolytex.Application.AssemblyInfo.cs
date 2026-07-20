@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MalihaPolytex.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1d9a96d16e7bd71520aa63d768ddf9140802a2b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f959192f0aa8ff74ee9b0426f3e76c40659e2da")]
 [assembly: System.Reflection.AssemblyProductAttribute("MalihaPolytex.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MalihaPolytex.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
