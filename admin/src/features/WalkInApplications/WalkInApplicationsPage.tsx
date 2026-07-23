@@ -1,72 +1,239 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
-
-import type {
-  WalkInApplication,
-  WalkInApplicationStatusUpdateRequest,
-} from "@/types/walkInApplication";
-
-import { careerApplicationStatuses } from "@/types/walkInApplication";
 
 import Card from "@/components/ui/Card";
 import ConfirmDialog from "@/components/ui/ConfirmDialog";
 import EmptyState from "@/components/ui/EmptyState";
 
+import WalkInApplicationFilters from "@/features/WalkInApplications/WalkInApplicationFilters";
+import WalkInApplicationsTable from "@/features/WalkInApplications/WalkInApplicationsTable";
+import WalkInApplicationDetailsDialog from "@/features/WalkInApplications/WalkInApplicationDetailsDialog";
 
 import {
-  getWalkInApplications,
+  searchWalkInApplications,
+  getDesignations,
+  downloadResumes,
   updateWalkInApplicationStatus,
   deleteWalkInApplication,
 } from "@/services/walkInApplicationService";
-import WalkInApplicationsTable from "./WalkInApplicationsTable";
-import WalkInApplicationDetailsDialog from "./WalkInApplicationDetailsDialog";
+
+import { careerApplicationStatuses } from "@/types/walkInApplication";
+
+import type {
+  WalkInApplication,
+  WalkInApplicationSearchRequest,
+  WalkInApplicationStatusUpdateRequest,
+} from "@/types/walkInApplication";
+
+const DEFAULT_PAGE_SIZE = 10;
 
 export default function WalkInApplicationsPage() {
-  const [items, setItems] = useState<WalkInApplication[]>([]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  const [dialogOpen, setDialogOpen] =
-    useState(false);
+  const [items, setItems] = useState<WalkInApplication[]>([]);
 
-  const [selectedItem, setSelectedItem] =
-    useState<WalkInApplication | null>(null);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
 
-  const [deleteItem, setDeleteItem] =
-    useState<WalkInApplication | null>(null);
+  const [totalCount, setTotalCount] = useState(0);
 
-  useEffect(() => {
-    void loadData();
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [search, setSearch] = useState("");
+
+  const [designation, setDesignation] = useState("");
+
+  const [statusId, setStatusId] = useState("");
+
+  const [minExperience, setMinExperience] = useState("");
+
+  const [maxExperience, setMaxExperience] = useState("");
+
+  const [designationOptions, setDesignationOptions] = useState<string[]>([]);
+
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  const [selectedItem, setSelectedItem] = useState<WalkInApplication | null>(
+    null,
+  );
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const [deleteItem, setDeleteItem] = useState<WalkInApplication | null>(null);
+
+  const request = useMemo<WalkInApplicationSearchRequest>(
+    () => ({
+      page,
+      pageSize,
+      search: search.trim() || undefined,
+
+      designation: designation || undefined,
+
+      statusId: statusId ? Number(statusId) : undefined,
+
+      minExperience: minExperience !== "" ? Number(minExperience) : undefined,
+
+      maxExperience: maxExperience !== "" ? Number(maxExperience) : undefined,
+    }),
+    [
+      page,
+      pageSize,
+      search,
+      designation,
+      statusId,
+      minExperience,
+      maxExperience,
+    ],
+  );
+
+  const loadDesignations = useCallback(async () => {
+    try {
+      const data = await getDesignations();
+      console.log(data);
+      
+      setDesignationOptions(data);
+    } catch {
+      toast.error("Failed to load designations.");
+    }
   }, []);
 
-  async function loadData() {
+  const loadApplications = useCallback(async () => {
     try {
       setLoading(true);
 
-      const response =
-        await getWalkInApplications();
+      const result = await searchWalkInApplications(request);
 
-      setItems(response);
-    } catch {
-      toast.error(
-        "Failed to load walk-in applications.",
+      setItems(result.items);
+
+      setPage(result.page);
+      setPageSize(result.pageSize);
+
+      setTotalCount(result.totalCount);
+      setTotalPages(result.totalPages);
+
+      setSelectedIds((previous) =>
+        previous.filter((id) =>
+          result.items.some((item) => item.walkInApplicationId === id),
+        ),
       );
+    } catch {
+      toast.error("Failed to load walk-in applications.");
     } finally {
       setLoading(false);
     }
+  }, [request]);
+
+  useEffect(() => {
+    void loadDesignations();
+  }, [loadDesignations]);
+
+  useEffect(() => {
+    void loadApplications();
+  }, [loadApplications]);
+
+  function handleRefresh() {
+    void loadApplications();
   }
 
-  function handleView(
-    item: WalkInApplication,
-  ) {
-    setSelectedItem(item);
+  function handleResetFilters() {
+    setSearch("");
+    setDesignation("");
+    setStatusId("");
+    setMinExperience("");
+    setMaxExperience("");
+    setPage(1);
+  }
+
+  function handleSearchChange(value: string) {
+    setSearch(value);
+    setPage(1);
+  }
+
+  function handleDesignationChange(value: string) {
+    setDesignation(value);
+    setPage(1);
+  }
+
+  function handleStatusChange(value: string) {
+    setStatusId(value);
+    setPage(1);
+  }
+
+  function handleMinExperienceChange(value: string) {
+    setMinExperience(value);
+    setPage(1);
+  }
+
+  function handleMaxExperienceChange(value: string) {
+    setMaxExperience(value);
+    setPage(1);
+  }
+
+  function handleView(application: WalkInApplication) {
+    setSelectedItem(application);
     setDialogOpen(true);
   }
+  function handleCloseDialog() {
+    setDialogOpen(false);
+    setSelectedItem(null);
+  }
 
-  async function handleSave(
+  function handleDelete(application: WalkInApplication) {
+    setDeleteItem(application);
+  }
+
+  async function confirmDelete() {
+    if (!deleteItem) {
+      return;
+    }
+
+    try {
+      setSaving(true);
+
+      await deleteWalkInApplication(deleteItem.walkInApplicationId);
+
+      toast.success("Application deleted successfully.");
+
+      setDeleteItem(null);
+
+      if (items.length === 1 && page > 1) {
+        setPage((previous) => previous - 1);
+      } else {
+        await loadApplications();
+      }
+    } catch {
+      toast.error("Failed to delete application.");
+    } finally {
+      setSaving(false);
+    }
+  }
+  function handleToggleSelect(id: number) {
+    setSelectedIds((previous) =>
+      previous.includes(id)
+        ? previous.filter((x) => x !== id)
+        : [...previous, id],
+    );
+  }
+
+  function handleToggleSelectAll() {
+    const ids = items.map((x) => x.walkInApplicationId);
+
+    const allSelected = ids.every((id) => selectedIds.includes(id));
+
+    if (allSelected) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(ids);
+    }
+  }
+
+  const handleStatusUpdate = async (
     request: WalkInApplicationStatusUpdateRequest,
-  ) {
-    if (!selectedItem) return;
+  ): Promise<void> => {
+    if (!selectedItem) {
+      return;
+    }
 
     try {
       setSaving(true);
@@ -76,103 +243,118 @@ export default function WalkInApplicationsPage() {
         request,
       );
 
-      toast.success(
-        "Application updated successfully.",
-      );
+      toast.success("Application status updated.");
 
       setDialogOpen(false);
-      setSelectedItem(null);
 
-      await loadData();
+      await loadApplications();
     } catch {
-      toast.error(
-        "Failed to update application.",
-      );
+      toast.error("Failed to update status.");
     } finally {
       setSaving(false);
     }
-  }
+  };
 
-  async function handleDelete() {
-    if (!deleteItem) return;
+
+  async function handleDownloadSelected() {
+    if (selectedIds.length === 0) {
+      toast.error("Please select at least one application.");
+      return;
+    }
 
     try {
-      await deleteWalkInApplication(
-        deleteItem.walkInApplicationId,
-      );
+      setLoading(true);
 
-      toast.success(
-        "Application deleted successfully.",
-      );
+      const blob = await downloadResumes(selectedIds);
 
-      if (
-        selectedItem?.walkInApplicationId ===
-        deleteItem.walkInApplicationId
-      ) {
-        setDialogOpen(false);
-        setSelectedItem(null);
-      }
+      const url = window.URL.createObjectURL(blob);
 
-      setDeleteItem(null);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `WalkInResumes_${new Date().getTime()}.zip`;
 
-      await loadData();
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      window.URL.revokeObjectURL(url);
+
+      toast.success("Download started.");
     } catch {
-      toast.error(
-        "Failed to delete application.",
-      );
+      toast.error("Failed to download resumes.");
+    } finally {
+      setLoading(false);
     }
   }
 
+  const hasData = items.length > 0;
+
   return (
     <>
-      <Card>
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold">
-            Walk-in Applications
-          </h1>
-
-          <p className="mt-1 text-sm text-gray-500">
-            Review and manage walk-in
-            applications.
-          </p>
-        </div>
-
-        {items.length === 0 &&
-        !loading ? (
-          <EmptyState
-            title="No Walk-in Applications"
-          />
-        ) : (
-          <WalkInApplicationsTable
-            items={items}
+      <div className="space-y-6">
+        <Card>
+          <WalkInApplicationFilters
+            search={search}
+            designation={designation}
+            statusId={statusId}
+            minExperience={minExperience}
+            maxExperience={maxExperience}
+            designationOptions={designationOptions}
+            statuses={careerApplicationStatuses}
             loading={loading}
-            onView={handleView}
-            onDelete={setDeleteItem}
+            selectedCount={selectedIds.length}
+            onSearchChange={handleSearchChange}
+            onDesignationChange={handleDesignationChange}
+            onStatusChange={handleStatusChange}
+            onMinExperienceChange={handleMinExperienceChange}
+            onMaxExperienceChange={handleMaxExperienceChange}
+            onRefresh={handleRefresh}
+            onReset={handleResetFilters}
+            onDownloadSelected={handleDownloadSelected}
           />
-        )}
-      </Card>
+        </Card>
 
+        <Card className="overflow-hidden">
+          {hasData || loading ? (
+            <WalkInApplicationsTable
+              items={items}
+              loading={loading}
+              page={page}
+              pageSize={pageSize}
+              totalCount={totalCount}
+              totalPages={totalPages}
+              selectedIds={selectedIds}
+              onToggleSelect={handleToggleSelect}
+              onToggleSelectAll={handleToggleSelectAll}
+              onPageChange={setPage}
+              onPageSizeChange={(size) => {
+                setPageSize(size);
+                setPage(1);
+              }}
+              onView={handleView}
+              onDelete={handleDelete}
+            />
+          ) : (
+            <EmptyState title="No Applications Found" />
+          )}
+        </Card>
+      </div>
       <WalkInApplicationDetailsDialog
         open={dialogOpen}
         application={selectedItem}
         statuses={careerApplicationStatuses}
         loading={saving}
-        onClose={() => {
-          setDialogOpen(false);
-          setSelectedItem(null);
-        }}
-        onSave={handleSave}
+        onClose={handleCloseDialog}
+        onSave={handleStatusUpdate}
       />
 
       <ConfirmDialog
-        open={!!deleteItem}
-        title="Delete Walk-in Application"
-        message="Are you sure you want to delete this walk-in application?"
-        loading={loading}
-        onClose={() =>
-          setDeleteItem(null)
-        }
-        onConfirm={handleDelete}
+        open={deleteItem !== null}
+        title="Delete Application"
+        message={`Are you sure you want to delete the application from "${deleteItem?.fullName ?? ""}"? This action cannot be undone.`}
+        loading={saving}
+        onClose={() => setDeleteItem(null)}
+        onConfirm={confirmDelete}
       />
     </>
   );

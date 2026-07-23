@@ -317,13 +317,12 @@ public class WalkInApplicationRepository : IWalkInApplicationRepository
             _dbConnectionFactory.CreateConnection();
 
         const string sql = """
-            SELECT DISTINCT
-                CurrentDesignation
-            FROM WalkInApplications
+            SELECT 
+                Name CurrentDesignation
+            FROM CareerDepartments
             WHERE
-                CurrentDesignation IS NOT NULL
-                AND LTRIM(RTRIM(CurrentDesignation)) <> ''
-            ORDER BY CurrentDesignation;
+                IsActive=1
+            ORDER BY DisplayOrder;
             """;
 
         return await connection.QueryAsync<string>(sql);

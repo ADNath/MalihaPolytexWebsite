@@ -62,7 +62,6 @@ export default function WalkInApplicationsTable({
     <>
       <DataTable
         loading={loading}
-        emptyMessage="No walk-in applications found."
       >
         <thead>
           <tr>

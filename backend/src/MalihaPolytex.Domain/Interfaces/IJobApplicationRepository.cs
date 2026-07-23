@@ -1,4 +1,7 @@
 ﻿using MalihaPolytex.Domain.Entities;
+using MalihaPolytex.Domain.Entities.Common;
+
+namespace MalihaPolytex.Domain.Interfaces;
 
 public interface IJobApplicationRepository
 {
@@ -15,4 +18,12 @@ public interface IJobApplicationRepository
         string? modifiedBy);
 
     Task DeleteAsync(int id);
+
+    Task<PagedResult<JobApplication>> SearchAsync(
+        JobApplicationSearchRequest request);
+
+    Task<IEnumerable<string>> GetJobTitlesAsync();
+
+    Task<MemoryStream> DownloadResumesAsync(
+        IEnumerable<int> jobApplicationIds);
 }
