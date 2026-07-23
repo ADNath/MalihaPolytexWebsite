@@ -58,7 +58,8 @@ export default function CompanyProfilesPage() {
       setLoading(false);
     }
   }
-
+  console.log(companyProfiles);
+  
   const filteredCompanyProfiles = useMemo(() => {
     return companyProfiles.filter(
       (x) =>

@@ -61,18 +61,15 @@ export default function ManagementMembersPage() {
     return managementMembers.filter(
       (member) =>
         member.name.toLowerCase().includes(keyword) ||
-        member.designation.toLowerCase().includes(keyword)
+        member.designation.toLowerCase().includes(keyword),
     );
   }, [managementMembers, search]);
 
   async function handleSave(request: ManagementMemberRequest) {
     console.log(selectedMember);
-    
+
     if (selectedMember) {
-      await updateManagementMember(
-        selectedMember.id,
-        request
-      );
+      await updateManagementMember(selectedMember.id, request);
     } else {
       await createManagementMember(request);
     }
@@ -149,10 +146,7 @@ export default function ManagementMembersPage() {
 
             <tbody>
               {filteredMembers.map((member) => (
-                <tr
-                  key={member.id}
-                  className="border-t hover:bg-gray-50"
-                >
+                <tr key={member.id} className="border-t hover:bg-gray-50">
                   <td className="px-5 py-4">
                     <img
                       src={getImageUrl(member.imageUrl)}
@@ -165,13 +159,9 @@ export default function ManagementMembersPage() {
                     <div className="font-semibold">{member.name}</div>
                   </td>
 
-                  <td className="px-5 py-4">
-                    {member.designation}
-                  </td>
+                  <td className="px-5 py-4">{member.designation}</td>
 
-                  <td className="text-center">
-                    {member.displayOrder}
-                  </td>
+                  <td className="text-center">{member.displayOrder}</td>
 
                   <td className="text-center">
                     <StatusBadge active={member.isActive} />

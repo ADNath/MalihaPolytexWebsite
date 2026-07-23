@@ -12,7 +12,6 @@ import type {
   CertificateRequest,
 } from "@/types/certificate";
 
-import { API_BASE_URL } from "@/config/app";
 
 import PageHeader from "@/components/ui/PageHeader";
 import Button from "@/components/ui/Button";
@@ -24,6 +23,7 @@ import SearchInput from "@/components/ui/SearchInput";
 import StatusBadge from "@/components/ui/StatusBadge";
 import ActionButtons from "@/components/ui/ActionButtons";
 import CertificateDialog from "./CertificateDialog";
+import { getImageUrl } from "@/utils/image";
 
 
 export default function CertificatesPage() {
@@ -157,7 +157,7 @@ export default function CertificatesPage() {
                   <td className="px-5 py-4">
                     <div className="flex justify-center">
                       <img
-                        src={`${API_BASE_URL}${item.image}`}
+                        src={getImageUrl(item.image)}
                         alt={item.title}
                         className="h-16 w-24 rounded-lg border object-cover"
                       />

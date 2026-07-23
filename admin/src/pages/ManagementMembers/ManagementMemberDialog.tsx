@@ -8,7 +8,6 @@ import {
   uploadImage,
 } from "@/api/managementMemberApi";
 
-import { API_BASE_URL } from "@/config/app";
 
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
@@ -16,6 +15,7 @@ import FileUpload from "@/components/ui/FileUpload";
 import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import Textarea from "@/components/ui/Textarea";
+import { getImageUrl } from "@/utils/image";
 
 interface Props {
   open: boolean;
@@ -66,9 +66,7 @@ export default function ManagementMemberDialog({
 
   const imageUrl = watch("imageUrl");
 
-  async function handleImageUpload(
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) {
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
 
     if (!file) return;
@@ -76,10 +74,7 @@ export default function ManagementMemberDialog({
     try {
       setUploading(true);
 
-      const response = await uploadImage(
-        file,
-        "managementmembers",
-      );
+      const response = await uploadImage(file, "managementmembers");
 
       if (response.success) {
         setValue("imageUrl", response.data, {
@@ -95,9 +90,7 @@ export default function ManagementMemberDialog({
     <Modal
       open={open}
       title={
-        managementMember
-          ? "Edit Management Member"
-          : "Add Management Member"
+        managementMember ? "Edit Management Member" : "Add Management Member"
       }
       onClose={onClose}
       footer={
@@ -131,11 +124,7 @@ export default function ManagementMemberDialog({
           <div>
             <FileUpload
               label="Image"
-              preview={
-                imageUrl
-                  ? `${API_BASE_URL}${imageUrl}`
-                  : undefined
-              }
+              preview={getImageUrl(imageUrl)}
               uploading={uploading}
               recommendedSize="600 × 800 px"
               onChange={handleImageUpload}
@@ -178,17 +167,13 @@ export default function ManagementMemberDialog({
                   required: "Display order is required.",
                   min: {
                     value: 1,
-                    message:
-                      "Display order must be at least 1.",
+                    message: "Display order must be at least 1.",
                   },
                 })}
               />
 
               <div className="flex h-full items-end pb-2">
-                <Checkbox
-                  label="Active"
-                  {...register("isActive")}
-                />
+                <Checkbox label="Active" {...register("isActive")} />
               </div>
             </div>
           </div>

@@ -49,7 +49,7 @@ public class FileStorageService : IFileStorageService
 
         await file.CopyToAsync(stream);
 
-        return $"/uploads/{folderName}/{fileName}";
+        return $"/Uploads/{folderName}/{fileName}";
     }
 
     public Task DeleteFileAsync(string relativePath)

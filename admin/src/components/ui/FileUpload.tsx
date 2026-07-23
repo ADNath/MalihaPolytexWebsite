@@ -82,7 +82,7 @@ export default function FileUpload({
               <img
                 src={preview}
                 alt="Preview"
-                className="h-full w-full object-cover"
+                className="h-full w-full "
               />
             ) : (
               <div className="flex h-full flex-col items-center justify-center bg-gray-100">

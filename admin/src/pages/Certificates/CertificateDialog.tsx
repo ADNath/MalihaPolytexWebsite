@@ -7,7 +7,6 @@ import {
 } from "@/types/certificate";
 
 import { uploadImage } from "@/api/heroSlideApi";
-import { API_BASE_URL } from "@/config/app";
 
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
@@ -15,6 +14,7 @@ import FileUpload from "@/components/ui/FileUpload";
 import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import Textarea from "@/components/ui/Textarea";
+import { getImageUrl } from "@/utils/image";
 
 interface Props {
   open: boolean;
@@ -133,11 +133,7 @@ export default function CertificateDialog({
       >
         <FileUpload
           label="Certificate Image"
-          preview={
-            image
-              ? `${API_BASE_URL}${image}`
-              : undefined
-          }
+          preview={getImageUrl(image)}          
           uploading={uploading}
           recommendedSize="1200 × 800 px"
           onChange={handleImageUpload}

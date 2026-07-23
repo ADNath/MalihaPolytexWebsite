@@ -80,6 +80,12 @@ const menus = [
     icon: File,
     path: "/job-application",
   },
+  {
+    name: "Walk in Application",
+    icon: File,
+    path: "/walkin-application",
+  },
+  
   
   
 ];

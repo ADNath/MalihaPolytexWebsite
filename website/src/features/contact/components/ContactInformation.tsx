@@ -49,9 +49,7 @@ export default function ContactInformation() {
 
     return primaryContact.phones.filter(
       (phone) =>
-        phone.includes("02") ||
-        phone.includes("021") ||
-        phone.includes("550"),
+        phone.includes("-") 
     );
   }, [primaryContact]);
 

@@ -32,6 +32,8 @@ using MalihaPolytex.Application.Features.CareerDepartments;
 using MalihaPolytex.Application.Features.JobOpenings;
 using MalihaPolytex.Application.Features.JobApplications.Interfaces;
 using MalihaPolytex.Application.Features.JobApplications.Services;
+using MalihaPolytex.Application.Features.WalkInApplications.Interfaces;
+using MalihaPolytex.Application.Features.WalkInApplications.Services;
 
 namespace MalihaPolytex.API.Extensions;
 
@@ -83,6 +85,10 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
         services.AddScoped<IJobApplicationService, JobApplicationService>();
+
+        services.AddScoped<IWalkInApplicationRepository, WalkInApplicationRepository>();
+        services.AddScoped<IWalkInApplicationService, WalkInApplicationService>();
+
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

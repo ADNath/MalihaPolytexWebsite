@@ -1,10 +1,17 @@
 import { Phone, Mail } from "lucide-react";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
 
-export default function TopBar() {
+interface TopBarProps {
+  isScrolled: boolean;
+}
+
+export default function TopBar({ isScrolled }: TopBarProps) {
   return (
-    <div className="bg-[#035D34] text-white text-sm">
-      <div className="container-custom h-10 flex items-center justify-between">
+    <div
+      className={`fixed left-0 right-0 top-0 z-[60] h-10 bg-[#035D34] text-sm text-white transition-transform duration-300 ${
+        isScrolled ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
+      <div className="container-custom flex h-full items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone size={15} />
@@ -18,9 +25,7 @@ export default function TopBar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <FaFacebookF className="cursor-pointer hover:text-green-200 transition" />
-
-          <FaLinkedinIn className="cursor-pointer hover:text-green-200 transition" />
+          
         </div>
       </div>
     </div>

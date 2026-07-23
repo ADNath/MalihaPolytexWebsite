@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { API_BASE_URL } from "@/config/app";
 
 import type {
   CreateGeneralCertificateRequest,
@@ -15,6 +14,7 @@ import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import Textarea from "@/components/ui/Textarea";
 import { uploadImage } from "@/api/heroSlideApi";
+import { getImageUrl } from "@/utils/image";
 
 interface Props {
   open: boolean;
@@ -70,11 +70,7 @@ export default function GeneralCertificateDialog({
 
   const image = watch("image");
 
-  const imagePreview = image
-    ? `${API_BASE_URL}${image}`
-    : generalCertificate?.image
-      ? `${API_BASE_URL}${generalCertificate.image}`
-      : undefined;
+  const imagePreview = image;
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -133,7 +129,7 @@ export default function GeneralCertificateDialog({
       >
         <FileUpload
           label="Certificate Image"
-          preview={imagePreview}
+          preview={getImageUrl(imagePreview)}
           previewType="image"
           uploading={uploading}
           accept="image/*"

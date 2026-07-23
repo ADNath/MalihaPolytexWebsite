@@ -7,5 +7,14 @@ export function getImageUrl(path?: string | null): string {
     return path;
   }
 
-  return `${API_BASE_URL}${path}`;
+  // Remove leading slash
+  path = path.replace(/^\/+/, "");
+
+  const base = API_BASE_URL.replace(/\/+$/, "");
+  const cleanPath = path.replace(/^\/+/, "");
+console.log(base,cleanPath);
+
+  return `${base}/${cleanPath}`;
+
+  
 }

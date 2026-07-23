@@ -7,15 +7,13 @@ import {
   toHeroSlideRequest,
   uploadImage,
 } from "@/api/heroSlideApi";
-
-import { API_BASE_URL } from "@/config/app";
-
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
 import FileUpload from "@/components/ui/FileUpload";
 import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import Textarea from "@/components/ui/Textarea";
+import { getImageUrl } from "@/utils/image";
 
 interface Props {
   open: boolean;
@@ -69,9 +67,7 @@ export default function HeroSlideDialog({
 
   const desktopImage = watch("desktopImage");
 
-  async function handleDesktopUpload(
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) {
+  async function handleDesktopUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
 
     if (!file) return;
@@ -127,11 +123,7 @@ export default function HeroSlideDialog({
           <div>
             <FileUpload
               label="Desktop Image"
-              preview={
-                desktopImage
-                  ? `${API_BASE_URL}${desktopImage}`
-                  : undefined
-              }
+              preview={getImageUrl(desktopImage)}
               uploading={uploading}
               recommendedSize="1920 × 800 px"
               onChange={handleDesktopUpload}
@@ -147,10 +139,7 @@ export default function HeroSlideDialog({
               })}
             />
 
-            <Input
-              label="Subtitle"
-              {...register("subtitle")}
-            />
+            <Input label="Subtitle" {...register("subtitle")} />
 
             <Textarea
               label="Description"
@@ -159,19 +148,14 @@ export default function HeroSlideDialog({
             />
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Input
-                label="Button Text"
-                {...register("buttonText")}
-              />
+              <Input label="Button Text" {...register("buttonText")} />
 
               <Input
                 label="Button URL"
                 {...register("buttonUrl", {
                   pattern: {
-                    value:
-                      /^(https?:\/\/|\/|#|$).*/i,
-                    message:
-                      "Please enter a valid URL.",
+                    value: /^(https?:\/\/|\/|#|$).*/i,
+                    message: "Please enter a valid URL.",
                   },
                 })}
                 error={errors.buttonUrl?.message}
@@ -188,17 +172,13 @@ export default function HeroSlideDialog({
                   required: "Display order is required.",
                   min: {
                     value: 1,
-                    message:
-                      "Display order must be at least 1.",
+                    message: "Display order must be at least 1.",
                   },
                 })}
               />
 
               <div className="flex h-full items-end pb-2">
-                <Checkbox
-                  label="Active"
-                  {...register("isActive")}
-                />
+                <Checkbox label="Active" {...register("isActive")} />
               </div>
             </div>
           </div>

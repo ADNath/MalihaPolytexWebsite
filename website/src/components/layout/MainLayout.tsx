@@ -1,15 +1,13 @@
 import { Outlet } from "react-router-dom";
-import TopBar from "./TopBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer/Footer";
 
 export default function MainLayout() {
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <TopBar />
       <Navbar />
 
-      <main>
+      <main className="pt-[136px]">
         <Outlet />
       </main>
 

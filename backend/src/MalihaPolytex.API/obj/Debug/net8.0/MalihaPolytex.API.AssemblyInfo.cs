@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MalihaPolytex.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f959192f0aa8ff74ee9b0426f3e76c40659e2da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5f14b383b5bcccce46a91d1bc4660009088e814")]
 [assembly: System.Reflection.AssemblyProductAttribute("MalihaPolytex.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MalihaPolytex.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

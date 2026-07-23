@@ -23,7 +23,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import SearchInput from "@/components/ui/SearchInput";
 import StatusBadge from "@/components/ui/StatusBadge";
 import GeneralCertificateDialog from "./GeneralCertificateDialog";
-import { API_BASE_URL } from "@/config/app";
+import { getImageUrl } from "@/utils/image";
 
 export default function GeneralCertificatesPage() {
   const [generalCertificates, setGeneralCertificates] = useState<
@@ -156,7 +156,7 @@ export default function GeneralCertificatesPage() {
                 >
                   <td className="px-5 py-4">
                     <img
-                      src={`${API_BASE_URL}${item.image}`}
+                      src={getImageUrl(item.image)}
                       alt={item.title}
                       className="h-16 w-24 rounded border object-cover"
                     />

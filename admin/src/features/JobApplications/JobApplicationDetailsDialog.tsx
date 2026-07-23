@@ -195,7 +195,7 @@ export default function JobApplicationDetailsDialog({
                     </div>
 
                     <a
-                      href={`${API_BASE_URL}/${application.resumeFile}`}
+                      href={`${API_BASE_URL}${application.resumeFile}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

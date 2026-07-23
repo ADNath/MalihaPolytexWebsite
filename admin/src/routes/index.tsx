@@ -18,6 +18,7 @@ import ContactInquiriesPage from "@/features/ContactInquiries/ContactInquiriesPa
 import CareerDepartmentsPage from "@/pages/CareerDepartments/CareerDepartmentsPage";
 import JobOpeningsPage from "@/features/JobOpenings/JobOpeningsPage";
 import JobApplicationsPage from "@/features/JobApplications/JobApplicationsPage";
+import WalkInApplicationsPage from "@/features/WalkInApplications/WalkInApplicationsPage";
 
 export default function AppRoutes() {
   return (
@@ -53,6 +54,7 @@ export default function AppRoutes() {
         <Route path="/career-dept" element={<CareerDepartmentsPage />} />
         <Route path="/job-opening" element={<JobOpeningsPage />} />
         <Route path="/job-application" element={<JobApplicationsPage />} />
+        <Route path="/walkin-application" element={<WalkInApplicationsPage />} />
 
         <Route path="*" element={<Navigate to="/hero-slides" replace />} />
       </Route>

@@ -3,6 +3,8 @@
 using MalihaPolytex.Application.Common.Interfaces;
 using MalihaPolytex.Application.Common.Responses;
 using MalihaPolytex.Application.Features.CompanyProfiles.DTOs;
+using MalihaPolytex.Application.Features.HeroSlides.DTOs;
+using MalihaPolytex.Application.Features.HeroSlides;
 
 namespace MalihaPolytex.API.Controllers;
 
@@ -21,11 +23,11 @@ public class CompanyProfilesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var profile = (await _companyProfileService.GetAllAsync()).FirstOrDefault();
+        var profile = (await _companyProfileService.GetAllAsync());
 
 
-        return Ok(ApiResponse<CompanyProfileResponse>
-        .SuccessResponse(profile));
+        return Ok(ApiResponse<IEnumerable<CompanyProfileResponse>>
+            .SuccessResponse(profile));
     }
 
     [HttpGet("{id:int}")]

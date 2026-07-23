@@ -97,24 +97,24 @@ export default function Hero() {
         {slides.map((slide) => (
           <SwiperSlide key={slide.title}>
             <div
-              className="relative h-[600px] sm:h-[680px] lg:h-[calc(100vh-120px)] bg-cover bg-center"
+              className="relative h-[600px] sm:h-[680px] xl:h-[calc(100vh-120px)] bg-cover bg-center"
               style={{
                 backgroundImage: `url(${getImageUrl(slide.desktopImage)})`,
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-transparent" />
 
-              <Container className="relative z-10 flex h-full flex-col justify-between py-16 lg:py-28">
-                <div className="max-w-md text-white lg:max-w-xl">
+              <Container className="relative z-10 flex h-full flex-col justify-between py-16 xl:py-28">
+                <div className="max-w-md text-white xl:max-w-xl">
                   <p className="mb-5 text-sm font-semibold uppercase tracking-[0.3em] text-green-400">
                     {slide.subtitle}
                   </p>
 
-                  <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">
+                  <h1 className="text-4xl font-bold leading-tight sm:text-5xl xl:text-7xl">
                     {slide.title}
                   </h1>
 
-                  <p className="mt-6 text-base leading-7 text-white-200 lg:text-lg lg:leading-8">
+                  <p className="mt-6 text-base leading-7 text-white-200 xl:text-lg xl:leading-8">
                     {slide.description}
                   </p>
 
@@ -129,7 +129,7 @@ export default function Hero() {
                   </div>
                 </div>
 
-                <div className="pb-4 lg:pb-0">
+                <div className="pb-4 xl:pb-0">
                   <div className="flex items-center gap-6">
                     {slides.map((_, index) => (
                       <button
@@ -166,14 +166,14 @@ export default function Hero() {
 
       <button
         onClick={() => swiperRef.current?.slidePrev()}
-        className="absolute left-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black lg:flex"
+        className="absolute left-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black xl:flex"
       >
         <ChevronLeft size={22} />
       </button>
 
       <button
         onClick={() => swiperRef.current?.slideNext()}
-        className="absolute right-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black lg:flex"
+        className="absolute right-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black xl:flex"
       >
         <ChevronRight size={22} />
       </button>

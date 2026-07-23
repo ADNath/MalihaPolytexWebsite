@@ -31,6 +31,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("Default");   // <-- Move this BEFORE UseStaticFiles
+
 var uploadPath = builder.Configuration["FileStorage:RootPath"];
 
 if (!string.IsNullOrWhiteSpace(uploadPath) && Directory.Exists(uploadPath))
@@ -38,11 +40,9 @@ if (!string.IsNullOrWhiteSpace(uploadPath) && Directory.Exists(uploadPath))
     app.UseStaticFiles(new StaticFileOptions
     {
         FileProvider = new PhysicalFileProvider(uploadPath),
-        RequestPath = "/uploads"
+        RequestPath = "/Uploads"
     });
 }
-
-app.UseCors("Default");
 
 app.UseApplicationPipeline();
 

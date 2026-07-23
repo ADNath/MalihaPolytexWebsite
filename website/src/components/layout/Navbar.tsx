@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 import logo from "../../assets/logo/logo.png";
 import DesktopNavigation from "./DesktopNavigation";
+import TopBar from "./TopBar";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,9 +22,13 @@ export default function Navbar() {
 
   return (
     <>
+      <TopBar isScrolled={isScrolled} />
+
       <header
-        className={`sticky top-0 z-50 transition-all duration-500 ${
-          isScrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur"
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "top-0 bg-white shadow-md"
+            : "top-10 bg-white/95 backdrop-blur"
         }`}
       >
         <div className="container mx-auto px-6">
@@ -53,7 +58,7 @@ export default function Navbar() {
             <DesktopNavigation />
 
             {/* Contact Button */}
-            <div className="hidden lg:block">
+            <div className="hidden xl:block">
               <Link
                 to="/contact"
                 className="rounded-full bg-green-700 px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-green-800 hover:-translate-y-0.5 hover:shadow-lg"
@@ -63,7 +68,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Button */}
-            <button onClick={() => setMenuOpen(true)} className="lg:hidden">
+            <button onClick={() => setMenuOpen(true)} className="xl:hidden">
               <Menu size={28} />
             </button>
           </div>

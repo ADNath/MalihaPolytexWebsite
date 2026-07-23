@@ -14,8 +14,9 @@ interface CompanyProfile {
 }
 
 export default function CompanyProfileSection() {
-  const [companyProfile, setCompanyProfile] =
-    useState<CompanyProfile | null>(null);
+  const [companyProfile, setCompanyProfile] = useState<CompanyProfile | null>(
+    null,
+  );
 
   const [loading, setLoading] = useState(true);
 
@@ -24,19 +25,20 @@ export default function CompanyProfileSection() {
       setLoading(true);
 
       const response = await getCompanyProfile();
-      console.log(response.data);
-      
+      console.log(response.data[0]);
+
       if (response.success) {
         setCompanyProfile({
-          title: response.data.title,
-          description: response.data.description,
-          pdfUrl: getImageUrl(response.data.pdfUrl),
-          updatedAt: new Date(
-            response.data.updatedAt,
-          ).toLocaleDateString("en-US", {
-            month: "long",
-            year: "numeric",
-          }),
+          title: response.data[0].title,
+          description: response.data[0].description,
+          pdfUrl: getImageUrl(response.data[0].pdfUrl),
+          updatedAt: new Date(response.data[0].updatedAt).toLocaleDateString(
+            "en-US",
+            {
+              month: "long",
+              year: "numeric",
+            },
+          ),
         });
       }
     } finally {
@@ -44,23 +46,41 @@ export default function CompanyProfileSection() {
     }
   }
 
-  
+  const handleDownload = async () => {
+    if (!companyProfile) {
+      return;
+    }
+
+    const response = await fetch(companyProfile.pdfUrl);
+
+    const blob = await response.blob();
+
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Company Profile.pdf";
+
+    document.body.appendChild(a);
+    a.click();
+
+    a.remove();
+    window.URL.revokeObjectURL(url);
+  };
+
   useEffect(() => {
     void loadCompanyProfile();
   }, []);
 
-
- if (loading || !companyProfile) {
-  return (
-    <section className="py-20">
-      <Container size="xl">
-        <div className="text-center text-gray-500">
-          Loading...
-        </div>
-      </Container>
-    </section>
-  );
-}
+  if (loading || !companyProfile) {
+    return (
+      <section className="py-20">
+        <Container size="xl">
+          <div className="text-center text-gray-500">Loading...</div>
+        </Container>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-gray-50 py-8 lg:py-10">
@@ -79,14 +99,14 @@ export default function CompanyProfileSection() {
           </p>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <a
-              href={companyProfile.pdfUrl}
-              download
+            
+            <button
+              onClick={handleDownload}
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-black transition hover:bg-primary/90 sm:w-auto"
             >
               <Download size={18} />
               Download PDF
-            </a>
+            </button>
 
             <span className="text-center text-sm text-gray-500 sm:text-right">
               Last Updated: {companyProfile.updatedAt}
