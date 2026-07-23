@@ -26,6 +26,7 @@ interface Props {
 
   onView: (item: WalkInApplication) => void;
   onDelete: (item: WalkInApplication) => void;
+  onDownload: (item: WalkInApplication) => void;
 }
 
 export default function WalkInApplicationsTable({
@@ -49,6 +50,7 @@ export default function WalkInApplicationsTable({
 
   onView,
   onDelete,
+  onDownload
 }: Props) {
   const allSelected =
     items.length > 0 &&
@@ -106,6 +108,7 @@ export default function WalkInApplicationsTable({
           }
           onView={onView}
           onDelete={onDelete}
+          onDownload={onDownload}
         />
       </DataTable>
 

@@ -58,9 +58,10 @@ public class JobApplicationsController : ControllerBase
         int id,
         JobApplicationStatusUpdateRequest request)
     {
+        var updatedBy = User.Identity?.Name;
         await _jobApplicationService.UpdateStatusAsync(
             id,
-            request);
+            request, updatedBy);
 
         return Ok(ApiResponse<bool>.SuccessResponse(
             true,

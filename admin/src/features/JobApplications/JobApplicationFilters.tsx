@@ -2,31 +2,37 @@ import Button from "@/components/ui/Button";
 import FormGrid from "@/components/ui/FormGrid";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
-import type { CareerApplicationStatus } from "@/types/walkInApplication";
 
-import { Search, RotateCcw, Download } from "lucide-react";
+import type { CareerApplicationStatus } from "@/types/jobApplication";
+
+import { Download, RotateCcw, Search } from "lucide-react";
+
+interface ExperienceOption {
+  label: string;
+  value: string | null;
+}
 
 interface Props {
   search: string;
-  designation: string;
+  jobId: string;
   statusId: string;
-  minExperience: string;
   maxExperience: string;
 
-  designationOptions: string[];
-  experienceOptions: {
+  jobOptions: {
     label: string;
-    value: string | null;
+    value: string;
   }[];
+
+  experienceOptions: ExperienceOption[];
+
   statuses: CareerApplicationStatus[];
 
   loading?: boolean;
   selectedCount: number;
 
   onSearchChange: (value: string) => void;
-  onDesignationChange: (value: string) => void;
+  onJobChange: (value: string) => void;
   onStatusChange: (value: string) => void;
-  onMinExperienceChange: (value: string) => void;
   onMaxExperienceChange: (value: string) => void;
 
   onReset: () => void;
@@ -34,22 +40,20 @@ interface Props {
   onDownloadSelected: () => void;
 }
 
-export default function WalkInApplicationFilters({
+export default function JobApplicationFilters({
   search,
-  designation,
+  jobId,
   statusId,
-  minExperience,
   maxExperience,
-  designationOptions,
+  jobOptions,
   experienceOptions,
   statuses,
   loading = false,
   selectedCount,
 
   onSearchChange,
-  onDesignationChange,
+  onJobChange,
   onStatusChange,
-  onMinExperienceChange,
   onMaxExperienceChange,
 
   onReset,
@@ -58,20 +62,23 @@ export default function WalkInApplicationFilters({
 }: Props) {
   const sliderValue = Math.max(
     0,
-    experienceOptions.findIndex((x) => x.value === (maxExperience || null)),
+    experienceOptions.findIndex(
+      (x) => x.value === (maxExperience || null),
+    ),
   );
+
   return (
     <div className="mb-6 rounded-xl border bg-white p-6 shadow-sm">
-      <div className="mb-5 flex items-center justify-between">
+      <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <h2 className="text-lg font-semibold">Filters</h2>
 
           <p className="mt-1 text-sm text-gray-500">
-            Search and filter walk-in applications.
+            Search and filter job applications.
           </p>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button
             type="button"
             variant="outline"
@@ -104,14 +111,11 @@ export default function WalkInApplicationFilters({
         />
 
         <Select
-          label="Designation"
-          value={designation}
-          onChange={(e) => onDesignationChange(e.target.value)}
-          options={designationOptions.map((item) => ({
-            label: item,
-            value: item,
-          }))}
-          placeholder="All Designations"
+          label="Job"
+          value={jobId}
+          onChange={(e) => onJobChange(e.target.value)}
+          options={jobOptions}
+          placeholder="All Jobs"
         />
 
         <Select
@@ -123,24 +127,6 @@ export default function WalkInApplicationFilters({
             value: String(status.statusId),
           }))}
           placeholder="All Status"
-        />
-
-        <Input
-          type="number"
-          min={0}
-          label="Minimum Experience"
-          value={minExperience}
-          onChange={(e) => onMinExperienceChange(e.target.value)}
-          placeholder="0"
-        />
-
-        <Input
-          type="number"
-          min={0}
-          label="Maximum Experience"
-          value={maxExperience}
-          onChange={(e) => onMaxExperienceChange(e.target.value)}
-          placeholder="20"
         />
 
         <div className="col-span-2">
@@ -155,7 +141,9 @@ export default function WalkInApplicationFilters({
             step={1}
             value={sliderValue}
             onChange={(e) => {
-              const option = experienceOptions[Number(e.target.value)];
+              const option =
+                experienceOptions[Number(e.target.value)];
+
               onMaxExperienceChange(option.value ?? "");
             }}
             className="h-2 w-full cursor-pointer accent-blue-600"
@@ -170,12 +158,14 @@ export default function WalkInApplicationFilters({
           <p className="mt-3 text-sm text-gray-600">
             Maximum Experience:
             <span className="ml-1 font-semibold">
-              {maxExperience ? `${maxExperience} Years` : "Any"}
+              {maxExperience
+                ? `${maxExperience} Years`
+                : "Any"}
             </span>
           </p>
         </div>
 
-        <div className="flex h-full items-end justify-end gap-3">
+        <div className="flex items-end justify-end gap-3">
           <Button
             type="button"
             variant="primary"

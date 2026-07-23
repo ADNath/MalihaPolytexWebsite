@@ -9,8 +9,6 @@ public static class ApplicationBuilderExtensions
     {
         app.UseMiddleware<ExceptionMiddleware>();
 
-        app.UseStaticFiles();
-
         app.UseAuthentication();
 
         app.UseAuthorization();

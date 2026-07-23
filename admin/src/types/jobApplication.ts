@@ -63,3 +63,20 @@ export const careerApplicationStatuses: CareerApplicationStatus[] = [
     statusName: "Withdrawn",
   },
 ];
+
+export interface JobApplicationSearchRequest {
+  page: number;
+  pageSize: number;
+  search?: string;
+  jobId?: number;
+  statusId?: number;
+  maxExperience?: number;
+}
+
+export interface PagedResult<T> {
+  items: T[];
+  page: number;
+  pageSize: number;
+  totalCount: number;
+  totalPages: number;
+}

@@ -1,7 +1,7 @@
 ﻿using MalihaPolytex.Application.Features.JobApplications.DTOs;
 using MalihaPolytex.Application.Features.JobApplications.Interfaces;
-
 using MalihaPolytex.Domain.Entities;
+using MalihaPolytex.Domain.Entities.Common;
 using MalihaPolytex.Domain.Interfaces;
 
 namespace MalihaPolytex.Application.Features.JobApplications.Services;
@@ -9,92 +9,37 @@ namespace MalihaPolytex.Application.Features.JobApplications.Services;
 public class JobApplicationService : IJobApplicationService
 {
     private readonly IJobApplicationRepository _jobApplicationRepository;
-    private readonly IJobOpeningRepository _jobOpeningRepository;
 
     public JobApplicationService(
-        IJobApplicationRepository jobApplicationRepository,
-        IJobOpeningRepository jobOpeningRepository)
+        IJobApplicationRepository jobApplicationRepository)
     {
         _jobApplicationRepository = jobApplicationRepository;
-        _jobOpeningRepository = jobOpeningRepository;
     }
 
     public async Task<IEnumerable<JobApplicationResponse>> GetAllAsync()
     {
-        var applications = await _jobApplicationRepository.GetAllAsync();
+        var applications =
+            await _jobApplicationRepository.GetAllAsync();
 
-        return applications.Select(x => new JobApplicationResponse
-        {
-            JobApplicationId = x.JobApplicationId,
-            JobId = x.JobId,
-            JobTitle = x.JobTitle,
-            FullName = x.FullName,
-            Email = x.Email,
-            Phone = x.Phone,
-            Address = x.Address,
-            HighestEducation = x.HighestEducation,
-            YearsOfExperience = x.YearsOfExperience,
-            CurrentCompany = x.CurrentCompany,
-            CurrentDesignation = x.CurrentDesignation,
-            ExpectedSalary = x.ExpectedSalary,
-            CoverLetter = x.CoverLetter,
-            ResumeFile = x.ResumeFile,
-            StatusId = x.StatusId,
-            StatusName = x.StatusName,
-            Remarks = x.Remarks,
-            AppliedDate = x.AppliedDate,
-            CreatedDate = x.CreatedDate,
-            CreatedBy = x.CreatedBy,
-            ModifiedDate = x.ModifiedDate,
-            ModifiedBy = x.ModifiedBy
-        });
+        return applications.Select(MapToResponse);
     }
 
     public async Task<JobApplicationResponse?> GetByIdAsync(int id)
     {
-        var application = await _jobApplicationRepository.GetByIdAsync(id);
+        var application =
+            await _jobApplicationRepository.GetByIdAsync(id);
 
-        if (application is null)
-            return null;
-
-        return new JobApplicationResponse
-        {
-            JobApplicationId = application.JobApplicationId,
-            JobId = application.JobId,
-            JobTitle = application.JobTitle,
-            FullName = application.FullName,
-            Email = application.Email,
-            Phone = application.Phone,
-            Address = application.Address,
-            HighestEducation = application.HighestEducation,
-            YearsOfExperience = application.YearsOfExperience,
-            CurrentCompany = application.CurrentCompany,
-            CurrentDesignation = application.CurrentDesignation,
-            ExpectedSalary = application.ExpectedSalary,
-            CoverLetter = application.CoverLetter,
-            ResumeFile = application.ResumeFile,
-            StatusId = application.StatusId,
-            StatusName = application.StatusName,
-            Remarks = application.Remarks,
-            AppliedDate = application.AppliedDate,
-            CreatedDate = application.CreatedDate,
-            CreatedBy = application.CreatedBy,
-            ModifiedDate = application.ModifiedDate,
-            ModifiedBy = application.ModifiedBy
-        };
+        return application is null
+            ? null
+            : MapToResponse(application);
     }
 
-    public async Task<int> CreateAsync(JobApplicationCreateRequest request)
+    public async Task<int> CreateAsync(
+        JobApplicationCreateRequest request)
     {
-        var job = await _jobOpeningRepository.GetByIdAsync(request.JobId);
-
-        if (job is null)
-            throw new Exception("Job opening not found.");
-
         var entity = new JobApplication
         {
             JobId = request.JobId,
-            JobTitle = job.Title,
             FullName = request.FullName,
             Email = request.Email,
             Phone = request.Phone,
@@ -106,8 +51,12 @@ public class JobApplicationService : IJobApplicationService
             ExpectedSalary = request.ExpectedSalary,
             CoverLetter = request.CoverLetter,
             ResumeFile = request.ResumeFile,
+
+            // Pending
             StatusId = 1,
-            CreatedBy = "Website"
+
+            AppliedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow
         };
 
         return await _jobApplicationRepository.CreateAsync(entity);
@@ -115,17 +64,97 @@ public class JobApplicationService : IJobApplicationService
 
     public async Task UpdateStatusAsync(
         int jobApplicationId,
-        JobApplicationStatusUpdateRequest request)
+        JobApplicationStatusUpdateRequest request,
+        string? modifiedBy)
     {
         await _jobApplicationRepository.UpdateStatusAsync(
             jobApplicationId,
             request.StatusId,
             request.Remarks,
-            "Admin");
+            modifiedBy);
     }
 
     public async Task DeleteAsync(int id)
     {
         await _jobApplicationRepository.DeleteAsync(id);
     }
+
+    async Task<Common.Pagination.PagedResult<JobApplicationResponse>>
+    IJobApplicationService.SearchAsync(JobApplicationSearchRequestDto request)
+    {
+        var result = await _jobApplicationRepository.SearchAsync(
+            new JobApplicationSearchRequest
+            {
+                Search = request.Search,
+                JobId = request.JobId,
+                StatusId = request.StatusId,
+                Page = request.Page,
+                PageSize = request.PageSize
+            });
+
+        return new Common.Pagination.PagedResult<JobApplicationResponse>
+        {
+            Items = result.Items
+                .Select(MapToResponse)
+                .ToList(),
+
+            Page = result.Page,
+            PageSize = result.PageSize,
+            TotalCount = result.TotalCount
+        };
+    }
+
+    public async Task<IEnumerable<string>> GetJobTitlesAsync()
+    {
+        return await _jobApplicationRepository.GetJobTitlesAsync();
+    }
+
+    public async Task<MemoryStream> DownloadResumesAsync(
+        IEnumerable<int> jobApplicationIds)
+    {
+        return await _jobApplicationRepository.DownloadResumesAsync(
+            jobApplicationIds);
+    }
+
+    private static JobApplicationResponse MapToResponse(
+        JobApplication application)
+    {
+        return new JobApplicationResponse
+        {
+            JobApplicationId = application.JobApplicationId,
+            JobId = application.JobId,
+            JobTitle = application.JobTitle,
+
+            FullName = application.FullName,
+            Email = application.Email,
+            Phone = application.Phone,
+            Address = application.Address,
+
+            HighestEducation = application.HighestEducation,
+            YearsOfExperience = application.YearsOfExperience,
+
+            CurrentCompany = application.CurrentCompany,
+            CurrentDesignation = application.CurrentDesignation,
+
+            ExpectedSalary = application.ExpectedSalary,
+
+            CoverLetter = application.CoverLetter,
+
+            ResumeFile = application.ResumeFile,
+
+            StatusId = application.StatusId,
+            StatusName = application.StatusName,
+
+            Remarks = application.Remarks,
+
+            AppliedDate = application.AppliedDate,
+
+            CreatedDate = application.CreatedDate,
+            CreatedBy = application.CreatedBy,
+
+            ModifiedDate = application.ModifiedDate,
+            ModifiedBy = application.ModifiedBy
+        };
+    }
+
 }

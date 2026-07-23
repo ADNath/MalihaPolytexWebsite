@@ -1,10 +1,10 @@
-import type { WalkInApplication } from "@/types/walkInApplication";
+import type { JobApplication } from "@/types/jobApplication";
 
 import ActionButtons from "@/components/ui/ActionButtons";
 import Badge from "@/components/ui/Badge";
 
 interface Props {
-  items: WalkInApplication[];
+  items: JobApplication[];
 
   page: number;
   pageSize: number;
@@ -12,9 +12,9 @@ interface Props {
   selectedIds: number[];
 
   onToggleSelect: (id: number) => void;
-  onView: (item: WalkInApplication) => void;
-  onDelete: (item: WalkInApplication) => void;
-  onDownload: (item: WalkInApplication) => void;
+  onView: (item: JobApplication) => void;
+  onDelete: (item: JobApplication) => void;
+  onDownload: (item: JobApplication) => void;
 }
 
 function getStatusVariant(
@@ -47,7 +47,7 @@ function getStatusVariant(
   }
 }
 
-export default function WalkInApplicationsTableBody({
+export default function JobApplicationsTableBody({
   items,
   page,
   pageSize,
@@ -55,24 +55,24 @@ export default function WalkInApplicationsTableBody({
   onToggleSelect,
   onView,
   onDelete,
-  onDownload
+  onDownload,
 }: Props) {
   return (
     <tbody>
       {items.map((item, index) => {
         const checked = selectedIds.includes(
-          item.walkInApplicationId,
+          item.jobApplicationId,
         );
 
         return (
-          <tr key={item.walkInApplicationId}>
+          <tr key={item.jobApplicationId}>
             <td>
               <input
                 type="checkbox"
                 checked={checked}
                 onChange={() =>
                   onToggleSelect(
-                    item.walkInApplicationId,
+                    item.jobApplicationId,
                   )
                 }
                 className="h-4 w-4 rounded border-gray-300"
@@ -87,9 +87,7 @@ export default function WalkInApplicationsTableBody({
               {item.fullName}
             </td>
 
-            <td>
-              {item.currentDesignation}
-            </td>
+            <td>{item.jobTitle}</td>
 
             <td>{item.email}</td>
 
@@ -125,9 +123,10 @@ export default function WalkInApplicationsTableBody({
               <div className="flex justify-end">
                 <ActionButtons
                   onView={() => onView(item)}
-                  onDelete={() =>
-                    onDelete(item)}
-                  onDownload={() => onDownload(item)}                  
+                  onDelete={() => onDelete(item)}
+                  onDownload={() =>
+                    onDownload(item)
+                  }
                 />
               </div>
             </td>

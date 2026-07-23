@@ -1,101 +1,112 @@
-
+import DataTable from "@/components/ui/DataTable";
 
 import type { JobApplication } from "@/types/jobApplication";
 
-import ActionButtons from "@/components/ui/ActionButtons";
-import Badge from "@/components/ui/Badge";
-import DataTable from "@/components/ui/DataTable";
+import JobApplicationsPagination from "./JobApplicationsPagination";
+import JobApplicationsTableBody from "./JobApplicationsTableBody";
 
 interface Props {
   items: JobApplication[];
+
   loading?: boolean;
+
+  page: number;
+  pageSize: number;
+  totalCount: number;
+  totalPages: number;
+
+  selectedIds: number[];
+
+  onToggleSelect: (id: number) => void;
+  onToggleSelectAll: () => void;
+
+  onPageChange: (page: number) => void;
+  onPageSizeChange: (pageSize: number) => void;
+
   onView: (item: JobApplication) => void;
   onDelete: (item: JobApplication) => void;
-}
-
-function getStatusVariant(
-  status: string,
-): "success" | "warning" | "danger" | "info" {
-  switch (status.toLowerCase()) {
-    case "pending":
-      return "warning";
-
-    case "under review":
-      return "info";
-
-    case "shortlisted":
-      return "info";
-
-    case "interview scheduled":
-      return "warning";
-
-    case "hired":
-      return "success";
-
-    case "rejected":
-      return "danger";
-
-    case "withdrawn":
-      return "danger";
-
-    default:
-      return "info";
-  }
+  onDownload: (item: JobApplication) => void;
 }
 
 export default function JobApplicationsTable({
   items,
   loading = false,
+  page,
+  pageSize,
+  totalCount,
+  totalPages,
+  selectedIds,
+  onToggleSelect,
+  onToggleSelectAll,
+  onPageChange,
+  onPageSizeChange,
   onView,
   onDelete,
+  onDownload,
 }: Props) {
+  const allSelected =
+    items.length > 0 &&
+    items.every((item) =>
+      selectedIds.includes(item.jobApplicationId),
+    );
+
   return (
-    <DataTable loading={loading}>
-      <thead>
-        <tr>
-          <th className="w-16">#</th>
-          <th>Applicant</th>
-          <th>Job Title</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Applied Date</th>
-          <th>Status</th>
-          <th className="w-28 text-right">Actions</th>
-        </tr>
-      </thead>
+    <>
+      <DataTable loading={loading}>
+        <thead>
+          <tr>
+            <th className="w-12">
+              <input
+                type="checkbox"
+                checked={allSelected}
+                onChange={onToggleSelectAll}
+                className="h-4 w-4 rounded border-gray-300"
+              />
+            </th>
 
-      <tbody>
-        {items.map((item, index) => (
-          <tr key={item.jobApplicationId}>
-            <td>{index + 1}</td>
+            <th className="w-16">#</th>
 
-            <td className="font-medium">{item.fullName}</td>
+            <th>Applicant</th>
 
-            <td>{item.jobTitle}</td>
+            <th>Job</th>
 
-            <td>{item.email}</td>
+            <th>Email</th>
 
-            <td>{item.phone}</td>
+            <th>Phone</th>
 
-            <td>{new Date(item.appliedDate).toLocaleDateString()}</td>
+            <th>Experience</th>
 
-            <td>
-              <Badge variant={getStatusVariant(item.statusName)}>
-                {item.statusName}
-              </Badge>
-            </td>
+            <th>Applied Date</th>
 
-            <td>
-              <div className="flex justify-end">
-                <ActionButtons
-                  onView={() => onView(item)}
-                  onDelete={() => onDelete(item)}
-                />
-              </div>
-            </td>
+            <th>Status</th>
+
+            <th className="w-40 text-right">
+              Actions
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </DataTable>
+        </thead>
+
+        <JobApplicationsTableBody
+          items={items}
+          page={page}
+          pageSize={pageSize}
+          selectedIds={selectedIds}
+          onToggleSelect={onToggleSelect}
+          onView={onView}
+          onDelete={onDelete}
+          onDownload={onDownload}
+        />
+      </DataTable>
+
+      <JobApplicationsPagination
+        page={page}
+        pageSize={pageSize}
+        totalCount={totalCount}
+        totalPages={totalPages}
+        loading={loading}
+        onPageChange={onPageChange}
+        onPageSizeChange={onPageSizeChange}
+      />
+    </>
   );
 }

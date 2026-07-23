@@ -1,12 +1,13 @@
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Download, Eye, Pencil, Trash2 } from "lucide-react";
 
 interface Props {
   onView?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
+  onDownload?: () => void;
 }
 
-export default function ActionButtons({ onView, onEdit, onDelete }: Props) {
+export default function ActionButtons({ onView, onEdit, onDelete, onDownload}: Props) {
   console.log(onView);
 
   return (
@@ -32,9 +33,18 @@ export default function ActionButtons({ onView, onEdit, onDelete }: Props) {
       {onView && (
         <button
           onClick={onView}
-          className="rounded-lg bg-red-600 p-2 text-white hover:bg-red-700"
+          className="rounded-lg bg-green-600 p-2 text-white hover:bg-green-700"
         >
           <Eye size={18} />
+        </button>
+      )}
+
+      {onDownload && (
+        <button
+          onClick={onDownload}
+          className="rounded-lg bg-blue-600 p-2 text-white hover:bg-blue-700"
+        >
+          <Download size={18} />
         </button>
       )}
     </div>

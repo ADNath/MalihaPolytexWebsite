@@ -40,7 +40,13 @@ if (!string.IsNullOrWhiteSpace(uploadPath) && Directory.Exists(uploadPath))
     app.UseStaticFiles(new StaticFileOptions
     {
         FileProvider = new PhysicalFileProvider(uploadPath),
-        RequestPath = "/Uploads"
+        RequestPath = "/Uploads",
+        OnPrepareResponse = ctx =>
+        {
+            ctx.Context.Response.Headers.Append(
+                "Access-Control-Allow-Origin",
+                "*");
+        }
     });
 }
 

@@ -24,6 +24,7 @@ import type {
   WalkInApplicationSearchRequest,
   WalkInApplicationStatusUpdateRequest,
 } from "@/types/walkInApplication";
+import { getImageUrl } from "@/utils/image";
 
 const DEFAULT_PAGE_SIZE = 10;
 
@@ -62,6 +63,16 @@ export default function WalkInApplicationsPage() {
 
   const [deleteItem, setDeleteItem] = useState<WalkInApplication | null>(null);
 
+  const experienceOptions = [
+  { label: "Any", value: null },
+  { label: "1", value: '1' },
+  { label: "2", value: '2' },
+  { label: "5", value: '5' },
+  { label: "10", value: '10' },
+  { label: "15+", value: '15' },
+];
+
+
   const request = useMemo<WalkInApplicationSearchRequest>(
     () => ({
       page,
@@ -91,7 +102,7 @@ export default function WalkInApplicationsPage() {
     try {
       const data = await getDesignations();
       console.log(data);
-      
+
       setDesignationOptions(data);
     } catch {
       toast.error("Failed to load designations.");
@@ -174,6 +185,35 @@ export default function WalkInApplicationsPage() {
     setSelectedItem(application);
     setDialogOpen(true);
   }
+
+  async function handleDownload(application: WalkInApplication) {
+    if (!application?.resumeFile) return;
+
+    const url = getImageUrl(application.resumeFile);
+
+    const response = await fetch(url);
+    const blob = await response.blob();
+
+    const extension = application.resumeFile.split(".").pop() ?? "pdf";
+
+    const fileName = `${application?.fullName.replace(
+      /\s+/g,
+      "_",
+    )}_Resume.${extension}`;
+
+    const blobUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    URL.revokeObjectURL(blobUrl);
+  }
+
   function handleCloseDialog() {
     setDialogOpen(false);
     setSelectedItem(null);
@@ -255,7 +295,6 @@ export default function WalkInApplicationsPage() {
     }
   };
 
-
   async function handleDownloadSelected() {
     if (selectedIds.length === 0) {
       toast.error("Please select at least one application.");
@@ -300,6 +339,7 @@ export default function WalkInApplicationsPage() {
             minExperience={minExperience}
             maxExperience={maxExperience}
             designationOptions={designationOptions}
+            experienceOptions={experienceOptions}
             statuses={careerApplicationStatuses}
             loading={loading}
             selectedCount={selectedIds.length}
@@ -333,6 +373,7 @@ export default function WalkInApplicationsPage() {
               }}
               onView={handleView}
               onDelete={handleDelete}
+              onDownload={handleDownload}
             />
           ) : (
             <EmptyState title="No Applications Found" />
